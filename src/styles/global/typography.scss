@@ -1,0 +1,59 @@
+body,
+html {
+    font-family: $font-stack-body;
+    font-size: 0.95em;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.2px;
+}
+
+h1, h2, h3 {
+    font-family: $font-stack-header;
+    font-weight: $font-weight-header;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+header.section-header h1, .table h1 {
+    text-align: center;
+    margin-bottom: $gutter * 2;
+}
+
+blockquote {
+    font-family: $font-stack-header;
+    font-weight: $font-weight-header;
+    font-size: 1.5em;
+    padding: 1em 0;
+}
+
+.grid__item p {
+    text-align: center;
+}
+
+a { 
+    color: $color-body-text;
+    text-decoration: none;
+    opacity: 1;
+    transition: opacity .5s ease-out;
+    -moz-transition: opacity .5s ease-out;
+    -webkit-transition: opacity .5s ease-out;
+    -o-transition: opacity .5s ease-out;
+}
+
+footer a, ul.content a { 
+    opacity: 1;
+    transition: opacity .5s ease-out;
+    -moz-transition: opacity .5s ease-out;
+    -webkit-transition: opacity .5s ease-out;
+    -o-transition: opacity .5s ease-out;
+}
+
+footer a:hover, ul.content a:hover {
+    opacity: 0.3;
+}
+
+a:hover {
+    color: $color-primary;
+}

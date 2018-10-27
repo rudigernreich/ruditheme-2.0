@@ -1,0 +1,100 @@
+<nav class="collection-nav">
+  <ul class="main-nav-left">
+  <li class="current-left">{{ collection.title }}{% include 'icon-arrow-down' %}</li>
+  <ul class="sub-nav-left hide">
+    {% for link in linklists.main-menu.links %}
+    {% if link.url != collection.url %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</ul>
+{% if collection.tags != blank %}
+<ul class="main-nav-right">
+  <li class="current-right">
+    {% if current_tags != blank %}
+      {% for tag in current_tags %}
+        {{ tag | remove: 'filter-' }}
+      {% endfor %}
+      {% include 'icon-arrow-down' %}
+    {% else %}
+      Filter{% include 'icon-arrow-down' %}
+    {% endif %}
+  </li>
+  <ul class="sub-nav-right hide">
+    {% for tag in collection.all_tags %}
+    {% if tag contains 'filter-' %}
+        {% assign tagName = tag | remove: 'filter-' %}
+        {% if current_tags contains tag %}
+            <li class="tag--active">
+            {{ 'All' | link_to_remove_tag: tag }}
+            </li>
+        {% else %}
+            <li>
+            {{ tagName | link_to_tag: tag }}
+            </li>
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+  </ul>
+</ul>
+{% endif %}
+</nav>
+<script type="text/javascript">
+var currentLeft = document.querySelector(".current-left");
+var currentRight = document.querySelector(".current-right");
+var subNavRight = document.querySelector(".sub-nav-right");
+var subNavLeft = document.querySelector(".sub-nav-left");
+
+var currentBoth = [currentLeft, currentRight];
+
+currentLeft.onclick = function() {
+  event.preventDefault();
+  if (subNavLeft.classList.contains('hide')) {
+    subNavLeft.classList.remove('hide');
+    subNavLeft.classList.add('show');
+   } else {
+     subNavLeft.classList.add('hide');
+   }
+  this.classList.toggle('active');
+
+  if(subNavRight.classList.contains('show')) {
+    subNavRight.classList.remove('show');
+    subNavRight.classList.add('hide');
+    currentRight.classList.remove('active');
+  } else {}
+  document.addEventListener('click', function(eventLeft) {
+      var isClickInsideLeft = currentLeft.contains(eventLeft.target);
+      var isHiddenLeft = subNavLeft.classList.contains('hide');
+
+      if (!isClickInsideLeft && !isHiddenLeft) {
+        currentLeft.classList.toggle('active');
+        subNavLeft.classList.add('hide');
+      }
+  });
+};
+currentRight.onclick = function() {
+  event.preventDefault();
+  if (subNavRight.classList.contains('hide')) {
+    subNavRight.classList.remove('hide');
+    subNavRight.classList.add('show');
+   } else {
+     subNavRight.classList.add('hide');
+   }
+  this.classList.toggle('active');
+  if(subNavLeft.classList.contains('show')) {
+    subNavLeft.classList.remove('show');
+    subNavLeft.classList.add('hide');
+    currentLeft.classList.remove('active');
+  } else {}
+  document.addEventListener('click', function(eventRight) {
+      var isClickInsideRight = currentRight.contains(eventRight.target);
+      var isHiddenRight = subNavRight.classList.contains('hide');
+
+      if (!isClickInsideRight && !isHiddenRight) {
+        currentRight.classList.toggle('active');
+        subNavRight.classList.add('hide');
+      }
+  });
+};
+</script>

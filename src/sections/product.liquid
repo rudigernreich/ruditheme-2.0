@@ -1,0 +1,357 @@
+       <div class="toggle-content">
+        <div class="size-chart-full">
+        <div style="position: fixed; top: 60px; right: 60px;">
+          <a class="toggle">
+            {% include 'icon-close' %}
+          </a>
+        </div>
+        <div class="table">
+        <h1>Size guide</h1>
+        <table class="size-guide-table">
+          <tr>
+            <td></td>
+            <td>FR</td>
+            <td>UK</td>
+            <td>US</td>
+            <td>IT</td>
+          </tr>
+          <tr>
+            <td>XS</td>
+            <td>32</td>
+            <td>4</td>
+            <td>0</td>
+            <td>36</td>
+          </tr>
+          <tr>
+            <td>S</td>
+            <td>34</td>
+            <td>6</td>
+            <td>2</td>
+            <td>38</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>36</td>
+            <td>8</td>
+            <td>4</td>
+            <td>40</td>
+          </tr>
+          <tr>
+            <td>L</td>
+            <td>38</td>
+            <td>10</td>
+            <td>6</td>
+            <td>42</td>
+          </tr>
+          <tr>
+            <td>XL</td>
+            <td>40</td>
+            <td>12</td>
+            <td>8</td>
+            <td>44</td>
+          </tr>
+        </table>
+        </div>
+        </div>
+        </div>
+
+<div data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" itemscope itemtype="http://schema.org/Product">
+
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+  <meta itemprop="name" content="{{ product.title }}{% unless product.has_only_default_variant %} - {{ current_variant.title }}{% endunless %}">
+  <meta itemprop="url" content="{{ shop.url }}{{ current_variant.url }}">
+  <meta itemprop="brand" content="{{ product.vendor }}">
+  <meta itemprop="image" content="{{ featured_image | img_url: '600x600' }}">
+  <meta itemprop="description" content="{{ product.description | strip_html | escape }}">
+
+  <div class="grid product-page clearfix">
+    <div class="grid__item medium-up--one-half small--one-whole">
+      {% if product.images.size > 1 %}
+          <div class="product-images-wrapper">
+            <div class="product-images siema">
+                {% for image in product.images %}
+                    <div class="product-img">
+                      {% assign img_url = image.src | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                        <img id="{{ img_id }}"
+                            class="lazyload"
+                            src="{{ image.src | img_url: '200x' }}"
+                            data-src="{{ img_url }}"
+                            data-widths="[180, 360, 540, 720, 800, 900, 1080, 1296, 1512, 1728, 2048]"
+                            data-aspectratio="{{ image.src.aspect_ratio }}"
+                            data-sizes="auto"
+                            data-parent-fit="cover"
+                            alt="{{ image.src.alt | escape }}">
+                    </div>
+                {% endfor %}
+            </div>
+          </div>
+      {% endif %} 
+    </div>
+
+
+
+    <div class="grid__item product-description medium-up--three-twelfths small--one-whole medium-up--push-one-twelfth medium-up--padding-top-three">
+      <h1>{{ product.title }}</h1>
+      <div data-price-wrapper>
+        <span data-product-price>
+          {{ current_variant.price | money_with_currency }}
+        </span>
+
+        {% if product.compare_at_price_max > product.price %}
+          <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+          <s data-compare-price>
+            {% if current_variant.compare_at_price > current_variant.price %}
+              {{ current_variant.compare_at_price | money_with_currency }}
+            {% endif %}
+          </s>
+        {% endif %}
+      </div>
+
+      <div class="grid">
+        <div class="grid__item medium-up--padding-top-three small--padding-top-two">
+           {{ product.description }}
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="grid__item medium-up--padding-top-one small--padding-top-two">
+          <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+            <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+            <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+
+            <form action="/cart/add" method="post" enctype="multipart/form-data">
+          {% unless product.has_only_default_variant %}
+            {% for option in product.options_with_values %}
+              <div class="product-single-option selector-wrapper js">
+                <label class="product-single-option-label" for="SingleOptionSelector-{{ forloop.index0 }}">
+                  {{ option.name }}
+                </label>
+
+                <select
+                  id="SingleOptionSelector-{{ forloop.index0 }}"
+                  data-single-option-selector
+                  data-index="option{{ option.position }}" class="single-option-selector">
+                  {% for value in option.values %}
+                    <option
+                      value="{{ value | escape }}"
+                      {% if option.selected_value == value %}selected="selected"{% endif %}>
+                        {{ value }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% endfor %}
+          {% endunless %}
+
+          <div class="hidden">
+          <select name="id" class="no-js" data-product-select>
+            {% for variant in product.variants %}
+              <option
+                {% if variant == current_variant %}selected="selected"{% endif %}
+                {% unless variant.available %}disabled="disabled"{% endunless %}
+                value="{{ variant.id }}">
+                  {{ variant.title }}
+              </option>
+            {% endfor %}
+          </select>
+          </div>
+
+          <div class="hidden">
+            <label for="Quantity" class="product-quantity-label">{{ 'products.product.quantity' | t }}</label>
+            <input type="number" class="product-quantity-input" id="Quantity" name="quantity" value="1" min="1">
+          </div>
+
+            <div class="grid">
+              <div class="grid__item medium-up--padding-top-one">
+                <button
+                  type="submit"
+                  name="add"
+                  data-add-to-cart
+                  {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                    <span data-add-to-cart-text>
+                      {% if current_variant.available %}
+                        {{ 'products.product.add_to_cart' | t }}
+                      {% else %}
+                        {{ 'products.product.sold_out' | t }}
+                      {% endif %}
+                    </span>
+                </button>
+                <button class="notify-me-button" id="BIS_trigger" {% if product.available %} style="display: none" {% endif %}>Email me when available</button>
+              </div>
+            </div>
+
+            </form>
+          </div>
+       </div>
+      </div>
+        <div class="information">
+        <a class="toggle">{% include 'icon-size-guide' %} Sizeguide</a>
+        </div> 
+    </div>
+
+
+    {% unless product == empty %}
+      <script type="application/json" data-product-json>
+        {{ product | json }}
+      </script>
+    {% endunless %}
+  </div><!-- grid__item -->
+</div><!-- grid -->
+
+{% javascript %}
+  // Sizeguide
+
+  $( ".toggle" ).click(function() {
+    $( ".toggle-content" ).fadeToggle("slow");
+  });
+
+
+// Slideshow
+
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// extend a Siema class by two methods
+// addDots - to create a markup for dots
+// updateDots - to update classes on dots on change callback
+var SiemaWithDots = function (_Siema) {
+  _inherits(SiemaWithDots, _Siema);
+
+  function SiemaWithDots() {
+    _classCallCheck(this, SiemaWithDots);
+
+    return _possibleConstructorReturn(this, (SiemaWithDots.__proto__ || Object.getPrototypeOf(SiemaWithDots)).apply(this, arguments));
+  }
+
+  _createClass(SiemaWithDots, [{
+    key: 'addDots',
+    value: function addDots() {
+      var _this2 = this;
+
+      // create a contnier for all dots
+      // add a class 'dots' for styling reason
+      this.dots = document.createElement('div');
+      this.dots.classList.add('dots');
+
+      // loop through slides to create a number of dots
+
+      var _loop = function _loop(i) {
+        // create a dot
+        var dot = document.createElement('button');
+
+        // add a class to dot
+        dot.classList.add('dots__item');
+        dot.setAttribute("id", i);
+
+        // add an event handler to each of them
+        dot.addEventListener('click', function () {
+          _this2.goTo(i);
+        });
+
+        // append dot to a container for all of them
+        _this2.dots.appendChild(dot);
+      };
+
+      for (var i = 0; i < this.innerElements.length; i++) {
+        _loop(i);
+      }
+
+      // add the container full of dots after selector
+      this.selector.parentNode.insertBefore(this.dots, this.selector.nextSibling);
+    }
+  }, {
+    key: 'updateDots',
+    value: function updateDots() {
+      // loop through all dots
+      for (var i = 0; i < this.dots.querySelectorAll('button').length; i++) {
+        // if current dot matches currentSlide prop, add a class to it, remove otherwise
+        var addOrRemove = this.currentSlide === i ? 'add' : 'remove';
+        this.dots.querySelectorAll('button')[i].classList[addOrRemove]('dots__item--active');
+      }
+    }
+  }]);
+
+  return SiemaWithDots;
+}(Siema);
+
+// instantiate new extended Siema
+
+
+var mySiemaWithDots = new SiemaWithDots({
+  perPage: 1,
+  loop: false,
+  // on init trigger method created above
+  onInit: function onInit() {
+    this.addDots();
+    this.updateDots();
+  },
+
+  // on change trigger method created above
+  onChange: function onChange() {
+    this.updateDots();
+  }
+});
+
+// listen for keydown event
+document.addEventListener('keydown', (e) => {
+  // if it's left arrow key
+  if (e.keyCode === 37) {
+    mySiemaWithDots.prev()
+  }
+  // if it's right arrow key
+  else if (e.keyCode === 39) {
+    mySiemaWithDots.next()
+  }
+});
+
+// listen for click
+var dir = "fwd";
+document.addEventListener('click', (e) => {
+  
+  if ((e.target.childNodes.length > 0) && e.target.childNodes[0].className === 'product-img') {
+    var dots = document.querySelectorAll('.dots__item');
+    var active = document.querySelectorAll('.dots__item--active');
+    var number = dots.length -1;
+    var siema = document.querySelectorAll('.siema')[0];
+    if (active[0].id === number.toString()) {
+      dir = "rev"; 
+    }
+    if (active[0].id === "0") {
+      dir = "fwd";
+    }
+    if (dir == "fwd") {
+      mySiemaWithDots.next();
+      siema.style.cursor = "e-resize";
+    } else {
+      mySiemaWithDots.prev();
+      siema.style.cursor = "w-resize";
+    }
+  }
+});
+
+
+{% endjavascript %}
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

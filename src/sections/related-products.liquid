@@ -1,0 +1,50 @@
+<div class="grid">
+<div class="grid__item medium-up--padding-top-two small--padding-top-three">
+  <header class="section-header">
+    <h1>Also. . .</h1>
+  </header>
+      
+  <div class="grid related">
+  {% assign number_of_related_products_to_show = 2 %} 
+      {% assign current_product = product %} {% assign current_product_tags = product.tags %} 
+      {% assign found_first_match = false %} {% assign found_second_match = false %} 
+      {% assign first_related_product = true %} 
+      {% paginate collections.all.products by 1000 %} 
+      {% assign counter = 0 %}
+      {% for product in collections.all.products %} 
+      {% unless product.handle == current_product.handle %}
+      {% for tag in product.tags %} 
+      {% if current_product_tags contains tag %} 
+      {% if found_first_match == false %} 
+      {% assign found_first_match = true %} 
+      {% assign first_match = tag %} 
+      {% else %} 
+      {% assign found_second_match = true %}
+      {% assign second_match = tag %}
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+      {% if found_first_match == true %}
+      {% if first_related_product == true %} 
+      {% assign first_related_product = false %}
+
+          {% endif %}
+      
+      {% if product.tags contains first_match or product.tags contains second_match %} 
+
+      {% if counter < 3 %}
+      {% include 'product-grid-item' with collection.handle %} 
+      {% assign counter = counter | plus: 1 %}
+
+      {% endif %} 
+      {% endif %} 
+      {% endif %} 
+      {% endunless %} 
+      {% endfor %} 
+      {% if first_related_product == false %}
+          {% endif %}
+      {% endpaginate %} 
+
+    </div>
+  </div>
+  </div>

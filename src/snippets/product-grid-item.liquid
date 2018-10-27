@@ -1,0 +1,51 @@
+<div class="grid__item medium-up--one-quarter small--one-whole">
+  {% if product.featured_image != blank %}
+    <a class="product-item-link" href="{{ product.url | within: collection }}">
+      <div class="product-item-card">
+        {% assign img_url =  product.images[0].src | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %} 
+        <img id="{{ img_id }}"
+            class="lazyload"
+            src="{{  product.images[0].src | img_url: '600x600' }}"
+            data-src="{{ img_url }}"
+            data-widths="[180, 360, 540, 720, 800, 900, 1080, 1296, 1512, 1728, 2048]"
+            data-aspectratio="{{  product.images[1].src.aspect_ratio }}"
+            data-sizes="auto"
+            alt="{{  product.images[0].src.alt | escape }}">
+      </div>
+    </a>
+  {% endif %}
+  <div class="product-item-title">
+    <p>
+      <a href="{{ product.url | within: collection }}">{{ product.title }}</a> <br>
+      {% if product.compare_at_price > product.price %}
+
+        {% if product.price_varies %}
+          {%- assign sale_price = product.price | money -%}
+          {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+        {% else %}
+          {{ 'products.product.on_sale' | t }}
+          {{ product.price | money_with_currency }}
+        {% endif %}
+
+      {% else %}
+
+        {% if product.price_varies %}
+          {%- assign price = product.price | money -%}
+          {{ 'products.product.from_text_html' | t: price: price }}
+        {% else %}
+          {{ product.price | money_with_currency }}
+        {% endif %}
+
+      {% endif %}
+
+      {% if product.compare_at_price > product.price %}
+        <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+        <s>{{ product.compare_at_price | money_with_currency }}</s>
+      {% endif %}
+
+      {% unless product.available %}
+        {{ 'products.product.sold_out' | t }}
+      {% endunless %}
+    </p>
+  </div>
+</div>

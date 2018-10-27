@@ -1,0 +1,7 @@
+{
+  "name": "rudi-new-milena",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@shopify/slate-tools": "0.14.0"
+  }
+}

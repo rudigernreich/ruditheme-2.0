@@ -1,0 +1,57 @@
+{% comment %}
+  When a comment is submitted, the browser is redirected to a page that includes 
+  the new comment id in its URL.
+  #comments is a required ID and is used as an anchor link by Shopify.
+{% endcomment %}
+
+{%- assign number_of_comments = article.comments_count -%}
+
+{% comment %}
+  If a comment was just submitted but requires moderation, we have an extra comment to count.
+{% endcomment %}
+{% if comment and comment.status != 'published' %}
+  {% assign number_of_comments = article.comments_count | plus: 1 %}
+{% endif %}
+
+  <header role="banner" style="text-align: center;">
+    <a href="">View all archive</a> <br><br><br>
+  </header>
+
+  {% if article.image %}
+  <div class="grid">
+    <div class="grid__item medium-up--ten-twelfths small--one-whole">
+    {{ article | img_url: '1024x1024' | img_tag: article.title }}
+    </div>
+  </div>
+  {% endif %} 
+
+<div class="grid">
+  <div class="grid__item medium-up--seven-twelfths small--one-whole">
+<article role="article" itemscope itemtype="http://schema.org/Article">
+
+<header>
+    <section>
+    {% if article.tags.size > 0 %}
+      <ul>
+        {% for tag in article.tags %}
+          <li> |
+            <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+           |</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <br><br>
+    </section>
+    <h1>{{ article.title }}</h1>
+    {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+    <p>{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}</p>
+  </header>
+
+  <div class="rte" itemprop="articleBody">
+    {{ article.content }}
+  </div>
+
+
+</article>
+</div>
+</div>

@@ -1,0 +1,23 @@
+.template-page {
+    .grid__item {
+        float: none;
+        margin: 0 auto;
+
+        h1 {
+            text-align: center;
+            padding-bottom: $gutter*2;
+        }
+
+        p {
+            text-align: left;
+        }
+    }
+}
+
+#stockists {
+    .grid__item {
+        p, .rte {
+            text-align: center;
+        }
+    }
+}

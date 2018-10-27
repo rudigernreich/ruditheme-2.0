@@ -1,0 +1,209 @@
+<div class="navigation-overlay" id="navigation-overlay">
+  <div class="navigation-full">
+      <a class="navigation-toggle">
+       {% include 'icon-close' %}
+      </a>
+
+      <!-- for now -->
+      <ul class="content">
+        <li><a href="">All products</a></li>
+        <li><a href="">Ready-To-Wear</a></li>
+        <li><a href="">Swimwear</a></li>
+        <li><a href="">Collaborator</a></li>
+        <li><a href="">Accessories</a></li>
+      </ul>
+
+      {%- assign collection_linklist = section.settings.collection_linklist -%}
+      {% if linklists[nav_linklist].links.size > 0 %}
+        <ul class="content">
+          {% for link in linklists[collection_linklist].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+    <footer>
+      {%- assign navigation_linklist = section.settings.navigation_linklist -%}
+      {% if linklists[nav_linklist].links.size > 0 %}
+        <div class="grid one-whole flex">
+        <ul class="grid__item one-whole content">
+          {% for link in linklists[navigation_linklist].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+        </div>
+      {% endif %}
+      <!-- for now -->
+      <div class="grid one-whole flex">
+        <ul class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default content social">
+          <li><a href="">Stockists</a></li>
+          <li><a href="">Cookie Policy</a></li>
+          <li><a href="">Terms & Conditions</a></li>
+          <li><a href="">Shipping & Returns</a></li>
+          <li><a href="">Company Details</a></li>
+          <li><a href="">Privacy Policy</a></li>                  
+        </ul>
+        <ul class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default content social">
+        Choose location:
+          <li><a href="">United States</a></li>
+          <li><a href="">Europe/worldwide</a></li>
+        </ul>
+        <ul class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default content social">
+          <li><a href="">Blog</a></li>
+          <li><a href="">Instagram</a></li>
+        </ul>
+        <div class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default newsletter">
+          {% include 'newsletter' %}
+        </div>
+      </div>
+  </footer>
+  </div>
+</div>
+
+<style>
+  {% if section.settings.logo != blank %}
+    .site-header__logo-image {
+      max-width: {{ section.settings.logo_max_width }}px;
+    }
+  {% endif %}
+</style>
+<div id="cover"></div>
+<div data-section-id="{{ section.id }}" data-section-type="header-section">
+  <header id="site-header" class="site-header" role="banner" style="width: 100%; display: flex; justify-content: space-between; justify-items: center; padding-bottom: 5em;">
+    <div role="navigation">
+      <a class="navigation-toggle" href="#" data-toggle="body">
+        <span class="span-hamburger">{% include 'icon-hamburger' %}</span>
+      </a>
+    </div>
+
+    {% if template.name == 'index' %}
+      <div itemscope itemtype="http://schema.org/Organization">
+    {% else %}
+      <div class="h1" itemscope itemtype="http://schema.org/Organization">
+    {% endif %}
+        <a href="/" itemprop="url" class="site-logo{% if section.settings.logo != blank %} site-header__logo-image{% endif %}">
+          {% if section.settings.logo != blank %}
+            <img src="{{ section.settings.logo | img_url: '600x600' }}"
+
+                 alt="{{ section.settings.logo.alt | default: shop.name }}"
+                 itemprop="logo">
+          {% else %}
+            <h1>{{ shop.name }}</h1>
+          {% endif %}
+        </a>
+    {% if template.name == 'index' %}
+      </div>
+    {% else %}
+      </div>
+    {% endif %}
+
+    <div>
+      <a class="cart-link" href="/cart">
+        {% include 'icon-cart' %}
+        {% if cart.item_count != 0 %}<div class="cart-full"></div>{% endif %}
+      </a>
+    </div>
+  </header>
+</div>
+
+<div class="sidebar" style="display: none;">
+    <form action="/search" method="get" role="search">
+      <label for="Search" class="label-hidden">
+        {{ 'general.search.placeholder' | t }}
+      </label>
+      <input type="search"
+             name="q"
+             id="Search"
+             value="{{ search.terms | escape }}"
+             placeholder="{{ 'general.search.placeholder' | t }}">
+      <button type="submit" class="btn">
+        {% include 'icon-search' %}
+        <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+      </button>
+    </form>
+
+  </header>
+
+  <nav role="navigation">
+    <ul>
+      {% for link in linklists[section.settings.main_linklist].links %}
+        {% if link.links != blank %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title | escape }}</a>
+            <ul>
+              {% for childlink in link.links %}
+                {% if childlink.links != blank %}
+                  <li>
+                    <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                    <ul>
+                      {% for grandchildlink in childlink.links %}
+                        <li>
+                          <a href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% else %}
+                  <li>
+                    <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title | escape }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+</div>
+
+</div>
+
+<script>
+  $( ".navigation-toggle" ).click(function() {
+    $( ".navigation-overlay" ).slideToggle("slow");
+  });
+</script>  
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "min": 50,
+        "max": 450,
+        "step": 10,
+        "unit": "px",
+        "label": "Custom logo width",
+        "default": 250
+      },
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "collection_linklist",
+        "label": "Navigation collection menu"
+      },
+      {
+        "type": "link_list",
+        "id": "navigation_linklist",
+        "label": "Navigation sub-menu"
+      }
+    ]
+  }
+{% endschema %}

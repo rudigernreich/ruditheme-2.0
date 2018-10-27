@@ -1,0 +1,20 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: $gutter * 4;
+
+    .links {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        flex-basis: 50%;
+    }
+    .newsletter {
+        flex-basis: 50%;
+    }
+    .input{ 
+        display: flex;
+        border-bottom: 1px solid #000;
+        padding-bottom:10px
+    }
+}

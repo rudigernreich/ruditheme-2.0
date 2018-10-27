@@ -1,0 +1,101 @@
+  {% if blog.all_tags.size > 0 %}
+    <ul class="blog-nav small--hide">
+      {% for tag in blog.all_tags %}
+
+        {% if current_tags contains tag %}
+          <li>| {{ tag }} |</li>
+        {% else %}
+          <li>{{ tag | link_to_tag: tag }}</li>
+        {% endif %}
+
+      {% endfor %}
+    </ul>
+  {% endif %} 
+
+{% paginate blog.articles by 5 %}
+
+  {%- assign blog_title = blog.title -%}
+
+  {% if current_tags %}
+    {% capture blog_title %}{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}{% endcapture %}
+  {% endif %}
+
+   {% comment %} <div class="grid">
+     <div class="grid__item medium-up--ten-twelfths small--one-whole medium-up--padding-top-two small--padding-top-none">
+      Stamp out Rudi Gernriech and make America great again. So begins the re-launch of the brand that outraged puritan America with bared breasts, sheer bra’s, unisex jumpsuits, art-world collaborations, incitements to expressive sexuality and freedoms for all regardless of race, creed, gender or sexual bias. Sixty years ago these were radical claims, affronts to the secular and religious orders of the day that led to condemnations from the Vatican, the Kremlin, the governments of Denmark and Greece, not to mention a raft of home grown religious zealots. Fall 2018 and perhaps less has changed than we might think. 
+      <br><br>
+      <hr>
+     </div> 
+   </div>  {% endcomment %}
+
+  {% comment %} <h1>{{ blog_title }}</h1> {% endcomment %}
+
+
+
+  {% comment %}
+
+  Article Previews
+  ====================
+  {% endcomment %}
+
+  <div class="grid flex-center">
+  <div class="grid__item medium-up--ten-twelfths small--one-whole">
+    <div class="grid">
+    {% for article in blog.articles %}
+      <div class="grid__item medium-up--four-twelfths small--one-whole medium-up--padding-top-one small--padding-top-default">
+        {% comment %} <header>
+            <section>
+              {% if article.tags.size > 0 %}
+              {% for tag in article.tags %}
+                <li> |
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+                  {% unless forloop.last %}, {% endunless %}
+                 |</li>
+              {% endfor %}
+            {% endif %}
+            </section>
+        </header> {% endcomment %}
+
+        <a href="{{ article.url }}" class="block-wrapper"> 
+        <div>
+        {% if article.image %}
+            {{ article | img_url: '1024x1024' | img_tag: article.title }}
+        {% endif %}
+            <div class="overlay">
+                <div class="overlay-content">
+                    {{ 'blogs.article.read_more' | t }} &rarr;
+                </div>
+            </div>
+        </div>
+        </a>
+
+
+        {% comment %} <header>
+             {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %} 
+             <p>{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}</p>
+        </header> {% endcomment %}
+
+        {% comment %} <div class="rte">
+          {% if article.excerpt.size > 0 %}
+            {{ article.excerpt }}
+          {% else %}
+            <p>
+              {{ article.content | strip_html | truncatewords: 100 }}
+            </p>
+          {% endif %}
+        </div> {% endcomment %}
+            <p>
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </p>
+        </div>
+
+    {% endfor %}
+  </div>
+  </div>
+  </div>
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+
+{% endpaginate %}
