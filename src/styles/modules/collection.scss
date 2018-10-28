@@ -1,10 +1,18 @@
 .grid.endless-scroll {
-    .grid__item {
-        &:nth-of-type(4) { padding-bottom: $gutter*4;}
-        &:nth-of-type(5) { padding-bottom: $gutter*4;}
-        &:nth-of-type(9) { padding-bottom: $gutter*4;}
-        &:nth-of-type(10) { padding-bottom: $gutter*4;}
+    .one-half:not(:nth-of-type(1)) {
+        clear: both;
+        padding-top: $gutter*2;
     }
+    .four-twelfths {
+        padding-top: $gutter*2;
+    }
+    .grid__item {
+        &:nth-of-type(2) { padding-top: 0; }
+    }
+}
+
+.endless-pagination {
+    text-align: center;
 }
 
 // &:nth-of-type(1) { @extend .one-half; @extend .medium-up--push-none; @extend .medium-up--padding-top-none;}
