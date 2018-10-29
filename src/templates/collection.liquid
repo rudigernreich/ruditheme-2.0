@@ -1,7 +1,7 @@
 {% include 'collection-nav' %}
 
 {% paginate collection.products by 5 %}
-  <div class="grid endless-scroll clearfix" id="collection-grid">
+  <div class="grid endless-scroll" id="collection-grid">
     {% for product in collection.products %}
       <div class="grid__item small--one-whole small--padding-top-default">
         {% if product.featured_image != blank %}
@@ -70,11 +70,10 @@
       {% else %}
         <p>{{ 'collections.general.no_matches' | t }}</p>
       {% endif %}
-
     {% endfor %}
   </div>
 
-  <div class="endless-pagination clearfix">
+  <div class="endless-pagination">
     {% if paginate.next %}
       <a href="{{ paginate.next.url }}">Loading More</a>
     {% endif %}
@@ -153,7 +152,5 @@ function handleScroll(event) {
 }
 
 window.addEventListener('scroll', handleScroll, false);
-
-
 </script>
 

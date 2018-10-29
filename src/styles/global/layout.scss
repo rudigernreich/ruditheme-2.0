@@ -15,7 +15,7 @@ html {
   margin: 0 auto;
 }
 
-body, .grid__item {
+body, #MainContent .grid__item {
   -webkit-animation: fadein 2.5s; /* Safari, Chrome and Opera > 12.1 */
      -moz-animation: fadein 2.5s; /* Firefox < 16 */
       -ms-animation: fadein 2.5s; /* Internet Explorer */

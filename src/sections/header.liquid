@@ -1,56 +1,34 @@
 <div class="navigation-overlay" id="navigation-overlay">
   <div class="navigation-full">
-      <a class="navigation-toggle">
-       {% include 'icon-close' %}
-      </a>
+    <a class="navigation-toggle">
+      {% include 'icon-close' %}
+    </a>
 
-      <!-- for now -->
-      <ul class="content">
-        <li><a href="">All products</a></li>
-        <li><a href="">Ready-To-Wear</a></li>
-        <li><a href="">Swimwear</a></li>
-        <li><a href="">Collaborator</a></li>
-        <li><a href="">Accessories</a></li>
-      </ul>
-
-      {%- assign collection_linklist = section.settings.collection_linklist -%}
-      {% if linklists[nav_linklist].links.size > 0 %}
-        <ul class="content">
-          {% for link in linklists[collection_linklist].links %}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-          {% endfor %}
-        </ul>
-      {% endif %}
+    <ul class="content">
+    {% for link in linklists.main-menu.links %}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+    </ul>
 
     <footer>
-      {%- assign navigation_linklist = section.settings.navigation_linklist -%}
-      {% if linklists[nav_linklist].links.size > 0 %}
-        <div class="grid one-whole flex">
-        <ul class="grid__item one-whole content">
-          {% for link in linklists[navigation_linklist].links %}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-          {% endfor %}
-        </ul>
-        </div>
-      {% endif %}
-      <!-- for now -->
       <div class="grid one-whole flex">
         <ul class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default content social">
-          <li><a href="">Stockists</a></li>
-          <li><a href="">Cookie Policy</a></li>
-          <li><a href="">Terms & Conditions</a></li>
-          <li><a href="">Shipping & Returns</a></li>
-          <li><a href="">Company Details</a></li>
-          <li><a href="">Privacy Policy</a></li>                  
+          {% for link in linklists.sidebar-menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}                
         </ul>
+
         <ul class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default content social">
         Choose location:
-          <li><a href="">United States</a></li>
-          <li><a href="">Europe/worldwide</a></li>
+          {% for link in linklists.location-menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}     
         </ul>
+
         <ul class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default content social">
-          <li><a href="">Blog</a></li>
-          <li><a href="">Instagram</a></li>
+          {% for link in linklists.footer.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}     
         </ul>
         <div class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default newsletter">
           {% include 'newsletter' %}
@@ -67,7 +45,7 @@
     }
   {% endif %}
 </style>
-<div id="cover"></div>
+
 <div data-section-id="{{ section.id }}" data-section-type="header-section">
   <header id="site-header" class="site-header" role="banner" style="width: 100%; display: flex; justify-content: space-between; justify-items: center; padding-bottom: 5em;">
     <div role="navigation">
@@ -126,7 +104,7 @@
 
   <nav role="navigation">
     <ul>
-      {% for link in linklists[section.settings.main_linklist].links %}
+      {% for link in linklists[section.settings.main-menu].links %}
         {% if link.links != blank %}
           <li>
             <a href="{{ link.url }}">{{ link.title | escape }}</a>
@@ -190,19 +168,24 @@
       },
       {
         "type": "link_list",
-        "id": "main_linklist",
-        "label": "Menu",
+        "id": "main-menu",
+        "label": "Collection Menu",
         "default": "main-menu"
       },
       {
         "type": "link_list",
-        "id": "collection_linklist",
-        "label": "Navigation collection menu"
+        "id": "sidebar-menu",
+        "label": "Sitemap"
       },
       {
         "type": "link_list",
-        "id": "navigation_linklist",
-        "label": "Navigation sub-menu"
+        "id": "location-menu",
+        "label": "Location"
+      },
+      {
+        "type": "link_list",
+        "id": "footer",
+        "label": "Social"
       }
     ]
   }
