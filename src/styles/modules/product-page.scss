@@ -24,9 +24,16 @@ body.template-product, html.template-product {
     }
     
     footer {
-        padding: $gutter * 2;
+        padding: $gutter*2;
+            @include media-query($small) {
+             padding: $gutter;
+            }
+        margin-top: $gutter*3;
+            @include media-query($small) {
+                margin-top: $gutter*2;
+            }
+        }
     }
-}
 
 .grid.product-page {
     display: flex;
@@ -145,8 +152,8 @@ table {
     padding-left: $gutter;
     padding-right: $gutter;
     display: flex;
-    align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .product-description {
@@ -233,7 +240,7 @@ table {
         }
     }
     .product-description {
-        padding: $gutter $gutter $gutter $gutter*2 ;
+        padding: $gutter $gutter $gutter $gutter*2;
 
         h1 {
             margin-top: 0;

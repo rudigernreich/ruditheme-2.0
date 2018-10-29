@@ -13,6 +13,9 @@
         header {
             text-align: center;
             padding-bottom: $gutter*2;
+            @include media-query($small) {
+                padding-bottom: $gutter;
+            }
 
             p {
                 text-align: center;
