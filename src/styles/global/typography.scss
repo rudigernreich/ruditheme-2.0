@@ -21,6 +21,15 @@ header.section-header h1, .table h1 {
     margin-bottom: $gutter * 2;
 }
 
+.template-page, .template-cart {
+    .grid__item {
+        h1 {
+            text-align: center;
+            padding-bottom: $gutter*2;
+        }
+    }
+}
+
 blockquote {
     font-family: $font-stack-header;
     font-weight: $font-weight-header;

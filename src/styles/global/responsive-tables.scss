@@ -16,33 +16,33 @@
     // IE9 table layout fixes
     tr,
     td {
-      float: left;
-      clear: both;
-      width: 100%;
+      // float: left;
+      // clear: both;
+      // width: 100%;
     }
 
     th,
     td {
-      display: block;
-      text-align: right;
-      padding: $gutter / 2;
-      margin: 0;
+      // display: block;
+      // text-align: right;
+      // padding: $gutter / 2;
+      // margin: 0;
     }
 
     td::before {
-      content: attr(data-label);
-      float: left;
-      text-align: center;
-      padding-right: 10px;
+      // content: attr(data-label);
+      // float: left;
+      // text-align: center;
+      // padding-right: 10px;
     }
   }
 
   // Add a keyline between rows
   .responsive-table-row + .responsive-table-row,
   tfoot > .responsive-table-row:first-child {
-    position: relative;
-    margin-top: 10px;
-    padding-top: $gutter / 2;
+    // position: relative;
+    // margin-top: 10px;
+    // padding-top: $gutter / 2;
 
     &::after {
       content: '';
