@@ -2,12 +2,19 @@
     .one-half:not(:nth-of-type(1)) {
         clear: both;
         padding-top: $gutter*2;
+        @include media-query($small) {
+            padding-top: $gutter;
+        }
     }
     .four-twelfths {
-        padding-top: $gutter*2;
+        @include media-query($medium-up) {
+            padding-top: $gutter*2;
+        }
     }
-    .grid__item {
-        &:nth-of-type(2) { padding-top: 0; }
+    @include media-query($medium-up) {
+        .grid__item {
+            &:nth-of-type(2) { padding-top: 0; }
+        }
     }
 }
 

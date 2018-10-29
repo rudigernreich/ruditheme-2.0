@@ -18,7 +18,10 @@ h1 {
 
 header.section-header h1, .table h1 {
     text-align: center;
-    margin-bottom: $gutter * 2;
+    margin-bottom: $gutter*2;
+    @include media-query($small) {
+          margin-bottom: $gutter;
+      }
 }
 
 .template-page, .template-cart {
@@ -26,6 +29,9 @@ header.section-header h1, .table h1 {
         h1 {
             text-align: center;
             padding-bottom: $gutter*2;
+            @include media-query($small) {
+                padding-bottom: $gutter;
+            }
         }
     }
 }

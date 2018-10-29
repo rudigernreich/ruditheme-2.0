@@ -5,7 +5,7 @@ p.ajaxified-cart-feedback {
     line-height: 1.5em;
 }
 
-
+.template-cart {
 table {
 
     tr {
@@ -23,6 +23,9 @@ table {
         border-bottom: 0;
         vertical-align: top;
         padding: 1.5em;
+        @include media-query($small) {
+            padding: 1em;
+        }
 
         &:last-of-type {
             padding-right: 0;
@@ -40,9 +43,10 @@ table {
         }
     }
 }
-
+}
 .btn2 {
     border: 0;
+    background: transparent;
 }
 .btn {
     font-family: $font-stack-body;
@@ -52,12 +56,4 @@ table {
     color: white;
     border: none;
     margin: 10px 0;
-}
-
-@include media-query($small) {
-    table {
-        td {
-            padding: 1em;
-        }
-    }
 }
