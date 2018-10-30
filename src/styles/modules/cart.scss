@@ -44,6 +44,13 @@ table {
     }
 }
 }
+
+input {  
+    background-clip: padding-box;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+}
+
 .btn2 {
     border: 0;
     background: transparent;
