@@ -14,7 +14,7 @@
 {% endif %}
 
   <header role="banner" style="text-align: center;">
-    <a href="">View all archive</a> <br><br><br>
+    <a href="{{ blog.url }}">View all archive</a> <br><br><br>
   </header>
 
   {% if article.image %}
@@ -44,7 +44,7 @@
     </section>
     <h1>{{ article.title }}</h1>
     {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-    <p>{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}</p>
+    <p>{{ date }}</p>
   </header>
 
   <div class="rte" itemprop="articleBody">
