@@ -16,7 +16,7 @@ h1 {
     font-size: 1.5em;
 }
 
-header.section-header h1, .table h1, .template-blog h1 {
+header.section-header h1, .table h1, .template-blog h1, .template-product header.section-header h3 {
     text-align: center;
     margin-bottom: $gutter*2;
     @include media-query($small) {
