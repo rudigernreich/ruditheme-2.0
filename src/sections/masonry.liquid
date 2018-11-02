@@ -1,0 +1,12 @@
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+<script>
+var $grid = $('.medium-up--ten-twelfths').imagesLoaded( function() {
+    $grid.masonry({
+        itemSelector: '.grid__sizer',
+        columnWidth: '.grid__sizer',
+        percentPosition: true
+    });
+});
+</script>
