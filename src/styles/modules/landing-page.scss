@@ -44,15 +44,17 @@
   @include media-query($small) {
     .block-wrapper .overlay {
         opacity: 1;
-        position: relative;
+        // position: relative;
         background: transparent;
-        padding: 1.5em 0 0 0;
+        padding: 0 0 0.5em 0;
+        // display: none;
+        align-items: flex-end;
      }
 
     .block-wrapper {
-        color: $color-body-text;
+        color: #fff;
         &:hover {
-            color:#111;
+            color:#a1a1a1;
         }
     }
     .first-block {
