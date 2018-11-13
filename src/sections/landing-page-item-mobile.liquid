@@ -1,0 +1,204 @@
+<div class="medium-up--hide">
+ <a href="{{ section.settings.landing-link }}">
+<div class="grid__item small--padding-top-default">
+
+        <div>
+
+
+          <div class="product-images-wrapper">
+            <div class="product-images siema">
+
+
+            <div class="product-img {{ section.settings.class }}">
+            {% assign img_url = section.settings.landing-mobile-image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+            <img id="{{ img_id }}"
+                class="lazyload"
+                src="{{ section.settings.landing-mobile-image | img_url: '600x600' }}"
+                data-src="{{ img_url }}"
+                data-widths="[180, 360, 540, 720, 800, 900, 1080, 1296, 1512, 1728, 2048]"
+                data-aspectratio="{{ section.settings.landing-mobile-image.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ section.settings.landing-mobile-image.alt | escape }}">
+            </div>
+            <div class="product-img {{ section.settings.class }}">
+            {% assign img_url = section.settings.landing-mobile-image2 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+            <img id="{{ img_id }}"
+                class="lazyload"
+                src="{{ section.settings.landing-mobile-image2 | img_url: '600x600' }}"
+                data-src="{{ img_url }}"
+                data-widths="[180, 360, 540, 720, 800, 900, 1080, 1296, 1512, 1728, 2048]"
+                data-aspectratio="{{ section.settings.landing-mobile-image2.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ section.settings.landing-mobile-image2.alt | escape }}">
+            </div>
+            <div class="product-img {{ section.settings.class }}">
+            {% assign img_url = section.settings.landing-mobile-image3 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+            <img id="{{ img_id }}"
+                class="lazyload"
+                src="{{ section.settings.landing-mobile-image3 | img_url: '600x600' }}"
+                data-src="{{ img_url }}"
+                data-widths="[180, 360, 540, 720, 800, 900, 1080, 1296, 1512, 1728, 2048]"
+                data-aspectratio="{{ section.settings.landing-mobile-image3.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ section.settings.landing-mobile-image3.alt | escape }}">
+            </div> 
+            <div class="product-img {{ section.settings.class }}">
+            {% assign img_url = section.settings.landing-mobile-image4 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+            <img id="{{ img_id }}"
+                class="lazyload"
+                src="{{ section.settings.landing-mobile-image4 | img_url: '600x600' }}"
+                data-src="{{ img_url }}"
+                data-widths="[180, 360, 540, 720, 800, 900, 1080, 1296, 1512, 1728, 2048]"
+                data-aspectratio="{{ section.settings.landing-mobile-image4.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ section.settings.landing-mobile-image4.alt | escape }}">
+            </div> 
+
+            </div>
+            </div>
+
+          </div>
+              <a href="{{ section.settings.landing-link }}" class="block-wrapper">
+                        <div class="overlay">
+                    <div class="overlay-content">{{ section.settings.link-text | newline_to_br }}</div>
+                </div>
+                </a>
+              
+        </div>
+</a>
+    </div>
+
+
+
+{% schema %}
+  {
+    "name": "Landing page item",
+    "settings": [
+      {
+		"id": "landing-mobile-image",
+		"type": "image_picker",
+		"label": "Image"
+      },
+      {
+		"id": "landing-mobile-image2",
+		"type": "image_picker",
+		"label": "Image"
+      },
+      {
+		"id": "landing-mobile-image3",
+		"type": "image_picker",
+		"label": "Image"
+      },
+    {
+		"id": "landing-mobile-image4",
+		"type": "image_picker",
+		"label": "Image"
+      },
+    {
+		"id": "landing-link",
+		"type": "url",
+		"label": "Image link"
+      },
+      {
+        "id": "link-text",
+        "type": "textarea",
+        "label": "Hover text"
+      },
+      {
+		"id": "class",
+		"type": "text",
+		"label": "Grid class"
+      }
+	]
+	,
+	"presets": [
+		{
+		"name": "Landing block mobile",
+		"category": "Landing item mobile"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+'use strict';
+
+var siemas = document.querySelectorAll('.siema');
+
+// this is fairly new way of looping through DOM Elements
+// More about ithere: https://pawelgrzybek.com/loop-through-a-collection-of-dom-elements/
+// For better compatibility I suggest using for loop
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+  for (var _iterator = siemas[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    var siema = _step.value;
+
+    new Siema({
+      selector: siema,
+        duration: 2500, 
+        easing: 'ease-out', 
+        loop: true,
+    });
+  }
+} catch (err) {
+  _didIteratorError = true;
+  _iteratorError = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion && _iterator.return) {
+      _iterator.return();
+      
+    }
+  } finally {
+    if (_didIteratorError) {
+      throw _iteratorError;
+    }
+  }
+}
+
+
+
+$(document).ready(function () {
+    $(window).on("resize", function (e) {
+        checkScreenSize();
+    });
+
+    checkScreenSize();
+
+    function checkScreenSize(){
+        var newWindowWidth = $(window).width();
+        if (newWindowWidth < 749) {
+            document.querySelector(".site-logo").href = "/collections/all";
+
+            let isScrolling = true; //a variable to stop the .scrollTop >= 400 from repeating
+            $(document).ready(function() {
+              $("a.site-logo").attr("href", "/collections/all");
+                $(window).on("scroll", function() {
+                  if ($(window).scrollTop() >= 100 && isScrolling) {
+                    $(".logo-mobile").fadeOut(50, function(){
+                      $(".logo-mobile").fadeIn(50).attr("src","https://cdn.shopify.com/s/files/1/0003/5618/8211/t/8/assets/GREEN-DOT_small.png").addClass("logo-green");  
+                    });
+                    isScrolling = false;
+                  } else if ($(window).scrollTop() < 100 && !isScrolling) {
+                    $(".logo-mobile").fadeOut(50, function(){
+                      $(".logo-mobile").fadeIn(50).attr("src","https://cdn.shopify.com/s/files/1/0003/5618/8211/files/logo_600x600.png").removeClass("logo-green");
+                    });
+                    isScrolling = true;
+                  }
+                });
+              });
+        }
+        else
+        {
+        }
+    }
+});
+
+
+{% endjavascript %}

@@ -19,10 +19,11 @@
           </a>
         {% endif %}
 
+         <div class="product-info-wrap">
           <p>
             <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
           </p>
-          <p>
+          <p class="right">
             {% if product.compare_at_price > product.price %}
 
               {% if product.price_varies %}
@@ -53,6 +54,7 @@
               {{ 'products.product.sold_out' | t }}
             {% endunless %}
           </p>
+      </div>
       </div>
 
       {% comment %}

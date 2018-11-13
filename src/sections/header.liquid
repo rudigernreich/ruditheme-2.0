@@ -1,3 +1,5 @@
+
+
 {% include 'geo' %}
 
 <div class="navigation-overlay" id="navigation-overlay">
@@ -32,9 +34,9 @@
             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}     
         </ul>
-        <div class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default newsletter">
+        {% comment %} <div class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default newsletter">
          {% include 'newsletter-header' %}
-        </div>
+        </div> {% endcomment %}
       </div>
   </footer>
   </div>
@@ -49,12 +51,17 @@
 </style>
 
 <div data-section-id="{{ section.id }}" data-section-type="header-section">
-  <header id="site-header" class="site-header" role="banner">
-    <div role="navigation">
-      <a class="navigation-toggle" href="#" data-toggle="body">
-        <span class="span-hamburger">{% include 'icon-hamburger' %}</span>
+  <header id="site-header" class="site-header" role="banner" style="width: 100%;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    ">
+    <div role="navigation" class="nav-link">
+      <a class="navigation-toggle" href="#" data-toggle="body" style="display: flex;justify-content: flex-end;">
+        {% include 'icon-hamburger' %}
       </a>
-    </div>
+    </div> 
 
     {% if template.name == 'index' %}
       <div itemscope itemtype="http://schema.org/Organization">
@@ -63,7 +70,7 @@
     {% endif %}
         <a href="/" itemprop="url" class="site-logo{% if section.settings.logo != blank %} site-header__logo-image{% endif %}">
           {% if section.settings.logo != blank %}
-            <img src="{{ section.settings.logo | img_url: '600x600' }}"
+            <img class="logo logo-mobile" src="{{ section.settings.logo | img_url: '600x600' }}"
 
                  alt="{{ section.settings.logo.alt | default: shop.name }}"
                  itemprop="logo">
@@ -77,12 +84,12 @@
       </div>
     {% endif %}
 
-    <div>
+   <div>
       <a class="cart-link" href="/cart">
         {% include 'icon-cart' %}
         {% if cart.item_count != 0 %}<div class="cart-full"></div>{% endif %}
       </a>
-    </div>
+    </div> 
   </header>
 </div>
 

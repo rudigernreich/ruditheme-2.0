@@ -1,12 +1,4 @@
 .template-blog {
-    .blog-nav {
-        width: 56%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        list-style: none;
-        margin: 0 auto 5em auto;
-    }
     .grid {
         margin-right: -30px;
         margin-left: -60px;
@@ -17,6 +9,23 @@
     .grid__sizer {
         width: calc(33.333% - 30px);
     }
+}
+.blog-nav {
+    width: 83%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0 auto $gutter auto;
+
+    li {
+        margin: 0 10px;
+    }
+}
+
+.rudiment-article {
+    text-align: center;
 }
 
 /*================ Mobile ================*/

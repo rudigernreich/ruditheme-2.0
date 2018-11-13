@@ -36,8 +36,12 @@ body.template-product, html.template-product {
     display: flex;
     flex-wrap: wrap;
 }
-.product-description p {
-    text-align: left;
+.product-description {
+    margin-left: $gutter;
+
+    p {
+        text-align: left;
+    }
 }
 
 .product-images-wrapper {
