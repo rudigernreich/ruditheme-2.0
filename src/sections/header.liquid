@@ -70,10 +70,27 @@
     {% endif %}
         <a href="/" itemprop="url" class="site-logo{% if section.settings.logo != blank %} site-header__logo-image{% endif %}">
           {% if section.settings.logo != blank %}
-            <img class="logo logo-mobile" src="{{ section.settings.logo | img_url: '600x600' }}"
 
+            {% case template %}
+            {% when 'blog' %}
+            <div class="logo">
+              <img src="{{ section.settings.logo2 | img_url: '600x600' }}"
                  alt="{{ section.settings.logo.alt | default: shop.name }}"
                  itemprop="logo">
+              </div>
+            {% when 'article' %}
+            <div class="logo">
+              <img src="{{ section.settings.logo2 | img_url: '600x600' }}"
+                 alt="{{ section.settings.logo.alt | default: shop.name }}"
+                 itemprop="logo">
+              </div>
+            {% else %}
+            <div class="logo">
+            <img src="{{ section.settings.logo | img_url: '600x600' }}"
+                 alt="{{ section.settings.logo.alt | default: shop.name }}"
+                 itemprop="logo">
+            </div>
+            {% endcase %}
           {% else %}
             <h1>{{ shop.name }}</h1>
           {% endif %}
@@ -174,6 +191,16 @@
         "unit": "px",
         "label": "Custom logo width",
         "default": 250
+      },
+      {
+        "type": "image_picker",
+        "id": "logo2",
+        "label": "Logo image Rudiment"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo3",
+        "label": "Logo image Landing"
       },
       {
         "type": "link_list",

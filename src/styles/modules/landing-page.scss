@@ -123,6 +123,7 @@
                 display: block;
                 position: relative;
                 z-index: -10;
+                padding-bottom: 115%;
 
                 &.landscape {
                   padding-bottom: 100%;
@@ -133,9 +134,9 @@
                 img {
                     position: absolute;
                     z-index: -9;
-                    height: 100%;
-                    width: 100%;
-                    left: 0;
+                    height: 110%;
+                    width: 115%;
+                    left: -5%;
                     object-fit: cover;
                     background: transparent;
                 }

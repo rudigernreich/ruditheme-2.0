@@ -1,0 +1,9 @@
+<script>
+    $(document).ready(function() {
+        $(".logo").fadeOut(50, function(){
+            $(".logo").fadeIn(50).attr("src","https://cdn.shopify.com/s/files/1/0003/5618/8211/t/8/assets/The%20Rudiment_Logo.png").addClass("logo-green");  
+        });
+    });
+</script>
+
+{{ 'The Rudiment_Logo.png' | asset_url }}
