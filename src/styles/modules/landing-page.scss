@@ -61,7 +61,6 @@
 
     .block-wrapper .overlay {
         opacity: 1;
-<<<<<<< HEAD
         z-index: 999;
         // position: relative;
         
@@ -82,19 +81,6 @@
         text-align: right;
         &:hover {
             color:#000;
-=======
-        // position: relative;
-        background: transparent;
-        padding: 0 0 0.5em 0;
-        // display: none;
-        align-items: flex-end;
-     }
-
-    .block-wrapper {
-        color: #fff;
-        &:hover {
-            color:#a1a1a1;
->>>>>>> 55b42fa9d599398045bbdfbf7ce2672cda7908cc
         }
     }
     .first-block {

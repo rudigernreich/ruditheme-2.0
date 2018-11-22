@@ -1,7 +1,7 @@
   {% comment %} <h1>{{ blog.title | link_to: blog.url }}</h1> {% endcomment %}
   
   {% if blog.all_tags.size > 0 %}
-    <ul class="blog-nav small--hide">
+    <ul class="blog-nav">
       <li><a href="{{ blog.url }}">All</a></li>
       {% for tag in blog.all_tags %}
 

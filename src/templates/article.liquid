@@ -13,8 +13,8 @@
   {% assign number_of_comments = article.comments_count | plus: 1 %}
 {% endif %}
 
-  <header role="banner" style="text-align: center;">
-    <a href="{{ blog.url }}">View all Rudiment archive</a> <br><br><br>
+  <header role="banner" class="blog-nav">
+    <a href="{{ blog.url }}">View all Rudiment archive</a>
   </header>
 
   {% if article.image %}
@@ -38,8 +38,8 @@
 <article role="article" itemscope itemtype="http://schema.org/Article">
 
 <header>
-    <section>
     {% if article.tags.size > 0 %}
+    <section>
       <ul>
         {% for tag in article.tags %}
           <li> |
@@ -47,9 +47,11 @@
            |</li>
         {% endfor %}
       </ul>
-    {% endif %}
-    <br><br>
+      <br><br>
     </section>
+    {% else %}
+    <div style="margin-top: 30px"></div>
+    {% endif %}
     <h1>{{ article.title }}</h1>
     {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
     <p>{{ date }}</p>
