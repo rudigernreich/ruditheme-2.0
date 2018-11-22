@@ -14,13 +14,21 @@
 {% endif %}
 
   <header role="banner" style="text-align: center;">
-    <a href="{{ blog.url }}">View all archive</a> <br><br><br>
+    <a href="{{ blog.url }}">View all Rudiment archive</a> <br><br><br>
   </header>
 
   {% if article.image %}
   <div class="grid">
     <div class="grid__item medium-up--ten-twelfths small--one-whole">
-    {{ article | img_url: '1024x1024' | img_tag: article.title }}
+            {% assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+            <img id="{{ img_id }}"
+                class="lazyload"
+                src="{{ article.image | img_url: '600x600' }}"
+                data-src="{{ img_url }}"
+                data-widths="[180, 360, 540, 720, 800, 900, 1080, 1296, 1512, 1728, 2048]"
+                data-aspectratio="{{ article.image.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ article.image.alt | escape }}">
     </div>
   </div>
   {% endif %} 

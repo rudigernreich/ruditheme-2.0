@@ -1,0 +1,36 @@
+{% if section.settings.collection == collection.handle %}
+    <div class=""  style="margin: 60px 0 90px 0; padding: 0 30px">
+    <p class="">
+        {{ section.settings.blurb-text }}
+    </p>
+    <hr>
+    </div>
+{% endif %}
+
+
+
+{% schema %}
+  {
+    "name": "Blurb",
+    "settings": [
+      {
+        "id": "blurb-text",
+        "type": "textarea",
+        "label": "Blurb text"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection",
+        "info": "Select the collection in which the content should be displayed"
+      }
+	]
+	,
+	"presets": [
+		{
+		"name": "Blurb",
+		"category": "Blurb"
+		}
+	]
+  }
+{% endschema %}

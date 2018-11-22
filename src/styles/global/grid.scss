@@ -197,7 +197,7 @@
   Vertical helper classes
 ==============================================================================*/
 @mixin grid-vert-generator($breakpoint: '') {
-  .#{$breakpoint}padding-top-default { padding-top: percentage(2 / 12); }
+  .#{$breakpoint}padding-top-default { padding-top: percentage(0.5 / 12); }
   .#{$breakpoint}padding-top-none { padding-top: 0; }
   .#{$breakpoint}padding-top-one { padding-top: percentage(0.5 / 12); }
   .#{$breakpoint}padding-top-two { padding-top: percentage(1 / 12); }

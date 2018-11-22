@@ -67,12 +67,17 @@ option {
   Fast Tap
   enables no-delay taps (FastClick-esque) on supporting browsers
 ==============================================================================*/
-a,
-button,
-[role="button"],
-input,
-label,
-select,
-textarea {
-  touch-action: manipulation;
-}
+// a,
+// button,
+// [role="button"],
+// input,
+// label,
+// select,
+// textarea {
+//   touch-action: manipulation;
+// }
+
+*
+{        
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}    
