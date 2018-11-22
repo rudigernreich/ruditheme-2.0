@@ -5,7 +5,7 @@
       <div class="grid__item small--one-whole small--padding-top-default">
         {% if product.featured_image != blank %}
 
-          <a href="{{ product.url | within: collection }}">
+          <a class="product-feature" href="{{ product.url | within: collection }}">
             {% assign img_url = product.featured_image.src | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
             <img id="{{ img_id }}"
                 class="lazyload"

@@ -57,7 +57,7 @@ a {
     -o-transition: opacity .5s ease-out;
 }
 
-footer a, ul.content a { 
+footer a, ul.content a, .product-feature:hover + .product-info-wrap a, .product-info-wrap a { 
     opacity: 1;
     transition: opacity .5s ease-out;
     -moz-transition: opacity .5s ease-out;
@@ -65,7 +65,7 @@ footer a, ul.content a {
     -o-transition: opacity .5s ease-out;
 }
 
-footer a:hover, ul.content a:hover {
+footer a:hover, ul.content a:hover, .product-feature:hover + .product-info-wrap a, .product-info-wrap a:hover {
     opacity: 0.3;
 }
 

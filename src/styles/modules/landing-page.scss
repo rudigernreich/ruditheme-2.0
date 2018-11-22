@@ -134,9 +134,6 @@
                 img {
                     position: absolute;
                     z-index: -9;
-                    height: 110%;
-                    width: 115%;
-                    left: -5%;
                     object-fit: cover;
                     background: transparent;
                 }
@@ -178,42 +175,7 @@
         z-index: 888;
       }
     }
-    &.template-collection {
-      padding: 0;
 
-        footer {
-          &.page-footer {
-            padding: $gutter;
-          }
-        }
-        .collection-nav {
-        	margin: $gutter 0;
-        }
-
-        .product-info-wrap {
-            display: flex;
-            justify-content: center;
-
-			p {
-              width: 40%;
-              padding: 0 10px;
-              text-align: left;
-              
-              &.right {
-                width: 35%;
-                text-align: right;
-              }
-            }
-
-        }
-        .site-header {
-          // padding-left: 10px;
-          // padding-top:10px;
-          // padding-right: 10px;
-          padding: $gutter;
-        }
-
-    }
   }
 }
 
