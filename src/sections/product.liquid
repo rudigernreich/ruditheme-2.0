@@ -1,59 +1,5 @@
-       <div class="toggle-content">
-        <div class="size-chart-full">
-        <div style="position: fixed; top: 60px; right: 60px;">
-          <a class="toggle">
-            {% include 'icon-close' %}
-          </a>
-        </div>
-        <div class="table">
-        <h1>Size guide</h1>
-        <table class="size-guide-table">
-          <tr>
-            <td></td>
-            <td>FR</td>
-            <td>UK</td>
-            <td>US</td>
-            <td>IT</td>
-          </tr>
-          <tr>
-            <td>XS</td>
-            <td>32</td>
-            <td>4</td>
-            <td>0</td>
-            <td>36</td>
-          </tr>
-          <tr>
-            <td>S</td>
-            <td>34</td>
-            <td>6</td>
-            <td>2</td>
-            <td>38</td>
-          </tr>
-          <tr>
-            <td>M</td>
-            <td>36</td>
-            <td>8</td>
-            <td>4</td>
-            <td>40</td>
-          </tr>
-          <tr>
-            <td>L</td>
-            <td>38</td>
-            <td>10</td>
-            <td>6</td>
-            <td>42</td>
-          </tr>
-          <tr>
-            <td>XL</td>
-            <td>40</td>
-            <td>12</td>
-            <td>8</td>
-            <td>44</td>
-          </tr>
-        </table>
-        </div>
-        </div>
-        </div>
+{% include 'size-guide-popup' %}
+{% include 'delivery-info-popup' %}
 
 <div data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" itemscope itemtype="http://schema.org/Product">
 
@@ -82,6 +28,7 @@
                             data-aspectratio="{{ image.src.aspect_ratio }}"
                             data-sizes="auto"
                             data-parent-fit="cover"
+                            data-optimumx="1.5"
                             alt="{{ image.src.alt | escape }}">
                     </div>
                 {% endfor %}
@@ -100,6 +47,7 @@
                 data-aspectratio="{{ product.featured_image.src.aspect_ratio }}"
                 data-sizes="auto"
                 data-parent-fit="cover"
+                data-optimumx="1.5"
                 alt="{{ product.featured_image.src.alt | escape }}">
             </div>
             </div>
@@ -205,7 +153,8 @@
        </div>
       </div>
         <div class="information">
-        <a class="toggle">{% include 'icon-size-guide' %} Sizeguide</a>
+          {% include 'icon-size-guide' %} <a class="toggle-delivery">Delivery info</a><br>
+          {% include 'icon-size-guide' %} <a class="toggle-size">Sizeguide</a>
         </div> 
     </div>
 
@@ -221,8 +170,11 @@
 {% javascript %}
   // Sizeguide
 
-  $( ".toggle" ).click(function() {
-    $( ".toggle-content" ).fadeToggle("slow");
+  $( ".toggle-size" ).click(function() {
+    $( ".toggle-content-size" ).fadeToggle("slow");
+  });
+  $( ".toggle-delivery" ).click(function() {
+    $( ".toggle-content-delivery" ).fadeToggle("slow");
   });
 
 // Slideshow
