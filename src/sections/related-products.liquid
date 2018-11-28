@@ -5,7 +5,7 @@
   </header>
       
   <div class="grid related">
-  {% assign number_of_related_products_to_show = 2 %} 
+  {% assign number_of_related_products_to_show = 3 %} 
       {% assign current_product = product %} {% assign current_product_tags = product.tags %} 
       {% assign found_first_match = false %} {% assign found_second_match = false %} 
       {% assign first_related_product = true %} 
@@ -14,6 +14,7 @@
       {% for product in collections.all.products %} 
       {% unless product.handle == current_product.handle %}
       {% for tag in product.tags %} 
+      {% unless tag contains 'filter-' %}
       {% if current_product_tags contains tag %} 
       {% if found_first_match == false %} 
       {% assign found_first_match = true %} 
@@ -23,7 +24,9 @@
       {% assign second_match = tag %}
       {% endif %}
       {% endif %}
+      {% endunless %}
       {% endfor %}
+
       {% if found_first_match == true %}
       {% if first_related_product == true %} 
       {% assign first_related_product = false %}
@@ -32,7 +35,7 @@
       
       {% if product.tags contains first_match or product.tags contains second_match %} 
 
-      {% if counter < 3 %}
+      {% if counter < 4 %}
       {% include 'product-grid-item' with collection.handle %} 
       {% assign counter = counter | plus: 1 %}
 

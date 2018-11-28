@@ -48,8 +48,8 @@ var subNavLeft = document.querySelector(".sub-nav-left");
 
 var currentBoth = [currentLeft, currentRight];
 
-currentLeft.onclick = function() {
-  event.preventDefault();
+currentLeft.onclick = function(e) {
+  e.preventDefault();
   if (subNavLeft.classList.contains('hide')) {
     subNavLeft.classList.remove('hide');
     subNavLeft.classList.add('show');
@@ -73,8 +73,8 @@ currentLeft.onclick = function() {
       }
   });
 };
-currentRight.onclick = function() {
-  event.preventDefault();
+currentRight.onclick = function(e) {
+  e.preventDefault();
   if (subNavRight.classList.contains('hide')) {
     subNavRight.classList.remove('hide');
     subNavRight.classList.add('show');
