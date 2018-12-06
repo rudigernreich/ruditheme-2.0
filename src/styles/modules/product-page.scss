@@ -157,6 +157,44 @@ table {
     flex-wrap: wrap;
 }
 
+#cross-sell div {
+
+    ul {
+        list-style-type: none;
+        @extend .flex-center;
+
+        li {
+            @extend .grid__item;
+            @extend .medium-up--one-quarter;
+            @extend .small--one-whole;
+        
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            .image {
+                flex-basis: 100%;
+            }
+
+            .producttitle {
+                width: 55%;
+                padding: 0;
+                margin-top: 1em;
+                text-align: left;
+            }
+            .money {
+                width: 45%;
+                margin-top: 1em;
+                text-align: right;
+
+                &:after {
+                    content: " EUR"
+                }
+            }
+        }
+    }
+}
+
 .product-description {
     display: flex;
     flex-direction: column;
@@ -225,6 +263,7 @@ table {
   .dots__item--active {
     background: rgb(107, 107, 107);
   }
+
 
 /*================ Mobile ================*/
 

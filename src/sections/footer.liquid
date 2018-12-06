@@ -14,8 +14,22 @@
 </footer>
 
 
-{% javascript %}
-{% endjavascript %}
+{% if template == 'collection' %}
+  {% include 'grid' %}
+  {{ 'siema.js' | asset_url | script_tag }}
+  {% include 'multiple-sliders' %}
+{% endif %}
+
+{% if template == 'index' %}
+  {{ 'siema.js' | asset_url | script_tag }}
+  {% include 'multiple-sliders' %}
+{% endif %}
+
+{% if template == 'product' %}
+  {{ 'siema.js' | asset_url | script_tag }}
+  {% include 'product-slider' %}
+{% endif %}
+
 
 {% schema %}
   {

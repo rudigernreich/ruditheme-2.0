@@ -1,5 +1,5 @@
 body {
-    &.template-collection {
+    &.template-collection, &.template-search {
         .product-info-wrap {
             display: flex;
             justify-content: center;
@@ -57,7 +57,7 @@ body {
         }
     }
     body {
-        &.template-collection {
+        &.template-collection, &.template-search {
             padding: 0;
       
               footer {

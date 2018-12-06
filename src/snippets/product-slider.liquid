@@ -1,0 +1,131 @@
+<script>
+// Slideshow
+
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// extend a Siema class by two methods
+// addDots - to create a markup for dots
+// updateDots - to update classes on dots on change callback
+var SiemaWithDots = function (_Siema) {
+  _inherits(SiemaWithDots, _Siema);
+
+  function SiemaWithDots() {
+    _classCallCheck(this, SiemaWithDots);
+
+    return _possibleConstructorReturn(this, (SiemaWithDots.__proto__ || Object.getPrototypeOf(SiemaWithDots)).apply(this, arguments));
+  }
+
+  _createClass(SiemaWithDots, [{
+    key: 'addDots',
+    value: function addDots() {
+      var _this2 = this;
+
+      // create a contnier for all dots
+      // add a class 'dots' for styling reason
+      this.dots = document.createElement('div');
+      this.dots.classList.add('dots');
+
+      // loop through slides to create a number of dots
+
+      var _loop = function _loop(i) {
+        // create a dot
+        var dot = document.createElement('button');
+
+        // add a class to dot
+        dot.classList.add('dots__item');
+        dot.setAttribute("id", i);
+
+        // add an event handler to each of them
+        dot.addEventListener('click', function () {
+          _this2.goTo(i);
+        });
+
+        // append dot to a container for all of them
+        _this2.dots.appendChild(dot);
+      };
+
+      for (var i = 0; i < this.innerElements.length; i++) {
+        _loop(i);
+      }
+
+      // add the container full of dots after selector
+      this.selector.parentNode.insertBefore(this.dots, this.selector.nextSibling);
+    }
+  }, {
+    key: 'updateDots',
+    value: function updateDots() {
+      // loop through all dots
+      for (var i = 0; i < this.dots.querySelectorAll('button').length; i++) {
+        // if current dot matches currentSlide prop, add a class to it, remove otherwise
+        var addOrRemove = this.currentSlide === i ? 'add' : 'remove';
+        this.dots.querySelectorAll('button')[i].classList[addOrRemove]('dots__item--active');
+      }
+    }
+  }]);
+
+  return SiemaWithDots;
+}(Siema);
+
+// instantiate new extended Siema
+
+
+var mySiemaWithDots = new SiemaWithDots({
+  perPage: 1,
+  loop: false,
+  // on init trigger method created above
+  onInit: function onInit() {
+    this.addDots();
+    this.updateDots();
+  },
+
+  // on change trigger method created above
+  onChange: function onChange() {
+    this.updateDots();
+  }
+});
+
+// listen for keydown event
+document.addEventListener('keydown', (e) => {
+  // if it's left arrow key
+  if (e.keyCode === 37) {
+    mySiemaWithDots.prev()
+  }
+  // if it's right arrow key
+  else if (e.keyCode === 39) {
+    mySiemaWithDots.next()
+  }
+});
+
+// listen for click
+var dir = "fwd";
+document.addEventListener('click', (e) => {
+  
+  if ((e.target.childNodes.length > 0) && e.target.childNodes[0].className === 'product-img') {
+    var dots = document.querySelectorAll('.dots__item');
+    var active = document.querySelectorAll('.dots__item--active');
+    var number = dots.length -1;
+    var siema = document.querySelectorAll('.siema')[0];
+    if (active[0].id === number.toString()) {
+      dir = "rev"; 
+    }
+    if (active[0].id === "0") {
+      dir = "fwd";
+    }
+    if (dir == "fwd") {
+      mySiemaWithDots.next();
+      siema.style.cursor = "e-resize";
+    } else {
+      mySiemaWithDots.prev();
+      siema.style.cursor = "w-resize";
+    }
+  }
+});
+</script>
