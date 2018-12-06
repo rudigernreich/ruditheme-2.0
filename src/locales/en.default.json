@@ -38,8 +38,8 @@
       }
     },
     "search": {
-      "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
-      "results_for_html": "Your search for \"{{ terms }}\" revealed the following:",
+      "no_results_html": "No search results for \"{{ terms }}\"",
+      "results_for_html": "Search results for \"{{ terms }}\"",
       "title": "Search for products on our site",
       "placeholder": "Search our store",
       "submit": "Search"

@@ -1,5 +1,28 @@
 /*================ Site Header ================*/
 
+.cookie-notification {
+  position: fixed;
+  left: 0;
+	z-index: 9999;
+	width: 100%;
+	background: black;
+	bottom: 0;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	a {
+		color: inherit;
+		text-decoration: underline;
+	}
+	.close-link {
+		display: block;
+		border: 1px solid white;
+		margin: 20px auto 0;
+		width: 215px;
+		text-decoration: none;
+	}
+}
+
 .site-header {
   width: 100%;
   display: flex;
@@ -18,6 +41,20 @@
   img {
     display: block;
     width: 100%;
+  }
+}
+
+.cart-button {
+  position: relative;
+  
+  .cart-full {
+    background: $rudigreen;
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    position: absolute;
+    top: 12px;
+    right: 6px;
   }
 }
 
@@ -135,8 +172,10 @@
   .site-header__logo-image {
     max-width: 170px !important;
   }
-  .navigation-full {
+  .navigation-overlay {
     overflow-y: scroll;
+  }
+  .navigation-full {
     padding: $gutter;
 
     .navigation-toggle {

@@ -12,37 +12,41 @@
     {% endif %}
   </h1>
 
-  <form action="/search" method="get" role="search">
-    <label for="Search" class="label-hidden">
-      {{ 'general.search.placeholder' | t }}
-    </label>
-    <input type="search"
-           name="q"
-           id="Search"
-           value="{{ search.terms | escape }}"
-           placeholder="{{ 'general.search.placeholder' | t }}">
-    <button type="submit" class="btn">
-      {% include 'icon-search' %}
-      <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-    </button>
-  </form>
+{% assign placeholder = "Try searching something else" %}
+{% assign width = "medium-up--five-twelfths" %}
+
+<div class="grid flex-center" style="margin-bottom: 60px; padding: 0 30px">
+  {% include 'search-form' %}
+</div>
 
 
 {% if search.performed %}
-    <ul>
+  <div class="grid endless-scroll" id="collection-grid">
       {% for item in search.results %}
-        <li>
-          {% assign featured_image = item.image | default: item.featured_image %}
-          {% if featured_image != blank %}
-            <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
-              {{ featured_image | img_url: '240x240' | img_tag: featured_image.alt }}
+      <div class="grid__item small--one-whole small--padding-top-default">
+
+          {% assign img_url = item.featured_image.src | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+          {% if img_url != blank %}
+            <a class="product-feature" href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
+            <img id="{{ img_id }}"
+                class="lazyload"
+                src="{{ item.featured_image.src | img_url: '200x' }}"
+                data-src="{{ img_url }}"
+                data-widths="[180, 360, 540, 720, 800, 900, 1080, 1296, 1512]"
+                data-aspectratio="{{ item.featured_image.src.aspect_ratio }}"
+                data-sizes="auto"
+                data-parent-fit="cover"
+                data-optimumx="1.5"
+                alt="{{ item.featured_image.src.alt | escape }}">
             </a>
           {% endif %}
 
-          <h5>{{ item.title | link_to: item.url }}</h5>
-
+          <div class="product-info-wrap">
+          <p>
+            {{ item.title | link_to: item.url }}
+          </p>
           {% if item.object_type == 'product' %}
-            <p>
+            <p class="right">
               {% if item.compare_at_price > item.price %}
                 {% if item.price_varies %}
                   {% assign sale_price = item.price | money %}
@@ -66,16 +70,21 @@
               {% endunless %}
             </p>
           {% else %}
-            <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+            <p class="right">{{ item.content | strip_html | truncatewords: 50 }}</p>
           {% endif %}
+          </div>
 
-        </li>
+
+        </div>
       {% endfor %}
-    </ul>
+</div>
 
-    {% if paginate.pages > 1 %}
-      {% include 'pagination' %}
+  <div class="endless-pagination">
+    {% if paginate.next %}
+      <a href="{{ paginate.next.url }}">Loading More</a>
     {% endif %}
+  </div>
   {% endif %}
 
+  {% include 'grid' %}
 {% endpaginate %}
