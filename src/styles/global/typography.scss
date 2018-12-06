@@ -16,7 +16,7 @@ h1 {
     font-size: 1.5em;
 }
 
-header.section-header h1, .table h1, .template-blog h1, .template-product header.section-header h3 {
+header.section-header h1, .table h1, .template-blog h1, .template-search h1, .template-product header.section-header h3 {
     text-align: center;
     margin-bottom: $gutter*2;
     @include media-query($small) {
@@ -57,7 +57,7 @@ a {
     -o-transition: opacity .5s ease-out;
 }
 
-footer a, ul.content a, .product-feature:hover + .product-info-wrap a, .product-info-wrap a, .information a { 
+footer a, ul.content a, .product-feature:hover + .product-info-wrap a, .product-info-wrap a, .information a, .toggle-content .table a { 
     opacity: 1;
     transition: opacity .5s ease-out;
     -moz-transition: opacity .5s ease-out;
@@ -65,7 +65,7 @@ footer a, ul.content a, .product-feature:hover + .product-info-wrap a, .product-
     -o-transition: opacity .5s ease-out;
 }
 
-footer a:hover, ul.content a:hover, .product-feature:hover + .product-info-wrap a, .product-info-wrap a:hover, .information a:hover {
+footer a:hover, ul.content a:hover, .product-feature:hover + .product-info-wrap a, .product-info-wrap a:hover, .information a:hover, .toggle-content .table a:hover {
     opacity: 0.3;
 }
 
