@@ -39,11 +39,6 @@
         {% assign placeholder = "Search" %}
         {% assign width = "medium-up--one-quarter" %}
         {% include 'search-form' %}
-   
-
-        {% comment %} <div class="grid__item medium-up--one-quarter small--one-whole small--padding-top-default newsletter">
-         {% include 'newsletter-header' %}
-        </div> {% endcomment %}
       </div>
   </footer>
   </div>
@@ -58,14 +53,9 @@
 </style>
 
 <div data-section-id="{{ section.id }}" data-section-type="header-section">
-  <header id="site-header" class="site-header" role="banner" style="width: 100%;
-    display: flex;
-    justify-content: space-between;
-    justify-items: center;
-    align-items: center;
-    ">
+  <header id="site-header" class="site-header" role="banner">
     <div role="navigation" class="nav-link">
-      <a class="navigation-toggle" href="#" data-toggle="body" style="display: flex;justify-content: flex-end;">
+      <a class="navigation-toggle" href="#" data-toggle="body">
         {% include 'icon-hamburger' %}
       </a>
     </div> 

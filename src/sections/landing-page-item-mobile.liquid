@@ -1,11 +1,10 @@
 <div class="medium-up--hide">
- <a href="{{ section.settings.landing-link }}">
-<div class="grid__item small--padding-top-default">
+  <a href="{{ section.settings.landing-link }}">
 
+    <div class="grid__item small--padding-top-default">
         <div>
           <div class="product-images-wrapper">
             <div class="product-images siema">
-
 
             <div class="product-img {{ section.settings.class }}">
             {% assign img_url = section.settings.landing-mobile-image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
@@ -57,19 +56,19 @@
             </div> 
 
             </div>
-            </div>
-
           </div>
-              <a href="{{ section.settings.landing-link }}" class="block-wrapper">
-                        <div class="overlay">
-                    <div class="overlay-content">{{ section.settings.link-text | newline_to_br }}</div>
-                </div>
-                </a>
-              
-        </div>
-</a>
-    </div>
 
+        </div>
+
+        <a href="{{ section.settings.landing-link }}" class="block-wrapper">
+          <div class="overlay">
+              <div class="overlay-content">{{ section.settings.link-text | newline_to_br }}</div>
+          </div>
+        </a>
+              
+    </div>
+  </a>
+</div>
 
 
 {% schema %}
@@ -123,31 +122,29 @@
 {% endschema %}
 
 {% stylesheet %}
-  @media only screen and (max-width: 749px) {
-.logo {
-  background: url(https://cdn.shopify.com/s/files/1/0003/5618/8211/files/GREEN-DOT.svg);
-  background-position: -100px -100px;
-  background-size: 40px 40px;
-  background-repeat: no-repeat;
-  width: 170px;
-  height: 40px
-}
-.logo img {
-  width: 100%;
-  height: auto;
-}
-.logo.change {
-  background-position: center center;
-}
-
-.logo.change img {
+@media only screen and (max-width: 749px) {
+  .logo {
+    background: url(https://cdn.shopify.com/s/files/1/0003/5618/8211/files/GREEN-DOT.svg);
+    background-position: -100px -100px;
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    width: 170px;
+    height: 40px
+  }
+  .logo img {
+    width: 100%;
+    height: auto;
+  }
+  .logo.change {
+    background-position: center center;
+  }
+  logo.change img {
     visibility: hidden;
   }
   .dots {
     display: none; !important;
   }
-  }
-
+}
 {% endstylesheet %}
 
 {% javascript %}
@@ -182,6 +179,4 @@ $(document).ready(function () {
         }
     }
 });
-
-
 {% endjavascript %}

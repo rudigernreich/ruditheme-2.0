@@ -19,7 +19,6 @@
   {% include 'search-form' %}
 </div>
 
-
 {% if search.performed %}
   <div class="grid endless-scroll" id="collection-grid">
       {% for item in search.results %}
@@ -74,10 +73,9 @@
           {% endif %}
           </div>
 
-
         </div>
       {% endfor %}
-</div>
+  </div>
 
   <div class="endless-pagination">
     {% if paginate.next %}

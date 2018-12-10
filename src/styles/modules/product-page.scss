@@ -148,6 +148,23 @@ table {
     }
 }
 
+.toggle-content {
+    .size-chart-full {
+        .close-button {
+            position: fixed;
+            top: 60px;
+            right: 60px;
+        }
+    }
+
+    &.toggle-content-delivery {
+        .content {
+            padding: 0 30px;
+        }
+    }
+}
+
+
 
 .grid.related {
     padding-left: $gutter;

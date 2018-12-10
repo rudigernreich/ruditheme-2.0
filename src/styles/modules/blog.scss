@@ -1,13 +1,13 @@
 .template-blog {
     .grid {
-        margin-right: -30px;
-        margin-left: -60px;
+        margin-right: -$gutter;
+        margin-left: -$gutter*2;
     }
     .grid__item {
-        padding-left: 30px;
+        padding-left: $gutter;
     }
     .grid__sizer {
-        width: calc(33.333% - 30px);
+        width: calc(33.333% - $gutter);
     }
 }
 .blog-nav {
@@ -33,10 +33,10 @@
 @include media-query($small) {
     .template-blog {
         .grid__sizer {
-            width: calc(50% - 30px);
+            width: calc(50% - $gutter);
         }
     }
     .blog-nav {
         margin: $gutter auto $gutter auto;
     }
-  }
+}

@@ -99,7 +99,7 @@
   }
 
   
-/* for now */
+/* for now -> move to other modules */
 @include media-query($small) {
   body{
     &.template-index {
@@ -154,10 +154,6 @@
         position: static;
         left: 0;
       }
-
-      // .block-wrapper {
-      //   margin-bottom: 7px;
-      // }
 
       #shopify-section-footer {
         display: none;

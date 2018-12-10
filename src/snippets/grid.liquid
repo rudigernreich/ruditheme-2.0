@@ -33,26 +33,28 @@ function addCss() {
         var remainder = i%5;
         grid[i].classList.add(classes[remainder], offset[remainder], spacing[remainder]);
       }
-
   }
+
+  // distinguish between content pocket and slider
   var select = document.querySelectorAll(".siema");
 
   var j;
   for (j = 0; j < select.length; j++) {
-
     if (select[j].parentElement.classList.contains("full-slider")) {
       select[j].firstElementChild.style.width = "900%";
     } else {
       select[j].firstElementChild.style.width = "300%";
     }
   }
-  
+
 }
 
 document.addEventListener("DOMContentLoaded", function() {
   addCss();
 });
 
+
+// pagingate (luiginate!)
 var isInViewport = function (elem) {
   var bounding = elem.getBoundingClientRect();
     return (

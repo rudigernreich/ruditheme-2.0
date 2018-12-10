@@ -1,6 +1,6 @@
 
-   <div class="small--hide"> 
-    <div class="grid__item {{ section.settings.class }} small--padding-top-default">
+<div class="small--hide"> 
+  <div class="grid__item {{ section.settings.class }} small--padding-top-default">
     <a href="{{ section.settings.landing-link }}" class="block-wrapper">
         <div>
             {% assign img_url = section.settings.landing-image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
@@ -18,8 +18,8 @@
                     <div class="overlay-content">{{ section.settings.link-text | newline_to_br }}</div>
                 </div>
         </div>
-        </a>
-    </div>
+      </a>
+  </div>
 </div>
 
 {% schema %}
