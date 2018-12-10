@@ -26,16 +26,27 @@ function addCss() {
   
   var i;
   for (i = 0; i < grid.length; i++) {
-      var remainder = i%5;
-      grid[i].classList.add(classes[remainder], offset[remainder], spacing[remainder]);
-  }
+      if (grid[i].classList.contains("full-slider")) {
+        grid[i].classList.add("ten-twelfths", "medium-up--push-one-twelfth", "medium-up--padding-top-one");
+      } 
+      else {
+        var remainder = i%5;
+        grid[i].classList.add(classes[remainder], offset[remainder], spacing[remainder]);
+      }
 
-  var siemas = document.querySelectorAll(".siema");
+  }
+  var select = document.querySelectorAll(".siema");
 
   var j;
-  for (j = 0; j < siemas.length; j++) {
-    siemas[j].firstElementChild.style.width = "300%";
+  for (j = 0; j < select.length; j++) {
+
+    if (select[j].parentElement.classList.contains("full-slider")) {
+      select[j].firstElementChild.style.width = "900%";
+    } else {
+      select[j].firstElementChild.style.width = "300%";
+    }
   }
+  
 }
 
 document.addEventListener("DOMContentLoaded", function() {

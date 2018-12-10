@@ -23,11 +23,22 @@ var SiemaWithDots = function (_Siema) {
   _createClass(SiemaWithDots, [{
     key: 'addDots',
     value: function addDots() {
-      var kak = document.querySelector(".siema").offsetWidth;
-      this.selectorWidth = kak/3-20;
-      var _this2 = this;
 
-  
+
+      if (this.selector.parentElement.classList.contains("full-slider")) {
+        var pag = document.querySelector(".full-slider .siema").firstElementChild.children;
+
+        for (var i = 0; i < pag.length; i++) {
+          var pageChild = pag[i].offsetWidth;
+          this.selectorWidth = pageChild-198.6; //temporary fix, think this has to do with % calculations
+        }
+      }
+      else { 
+        var pag = document.querySelector(".siema").offsetWidth;
+        this.selectorWidth = pag/3-20; //temporary fix
+      }
+
+      var _this2 = this;
 
       this.dots = document.createElement('div');
       this.dots.classList.add('dots');
