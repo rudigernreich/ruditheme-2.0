@@ -140,59 +140,13 @@
               {% assign image = disturbers.settings.image %}
               {% assign image2 = disturbers.settings.image2 %}
               {% assign image3 = disturbers.settings.image3 %}
-            {% endif %}
-
-              
-          
-
-            {% comment %} Overwrite content if custom content is set {% endcomment %}
-            
-            {% if disturbers.settings.content != blank %}
-              {% assign content = disturbers.settings.content %}
-            {% endif %}
-            {% if paginate.current_page == 1 %}
-            <div class="grid__item {{ disturbers.settings.class }} small--one-whole small--padding-top-default product-disturber">
-              <div class="siema">
-                {{ image.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-                {{ image2.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-                {{ image3.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-              </div>
-          </div> 
-          {% endif %}
-
-         
-            {% elsif disturbers.type == 'disturber2' %}
-                       {% if collection.image %}
-              {% assign image = collection.image %}
-            {% endif %}
-
-
-            {% comment %} If url links to collection get image and content of them {% endcomment %}
-            {% if disturbers.settings.url contains "/collections/" %}
-              {% assign collectionHandle = disturbers.settings.url | remove_first: "/collections/" %}
-              {% assign collection = collections[collectionHandle] %}
-
-              {% capture content %}
-                <div class="title">{{ collection.title }}</div>
-                <div class="text">
-                  {{ collection.description }}
-                </div>
-              {% endcapture %}
-
-            {% endif %}
-
-
-            {% comment %} Overwrite image if custom image is set {% endcomment %}
-            {% if disturbers.settings.image != blank %}
-              {% assign image = disturbers.settings.image %}
-              {% assign image2 = disturbers.settings.image2 %}
-              {% assign image3 = disturbers.settings.image3 %}
               {% assign image4 = disturbers.settings.image4 %}
               {% assign image5 = disturbers.settings.image5 %}
               {% assign image6 = disturbers.settings.image6 %}
               {% assign image7 = disturbers.settings.image7 %}
               {% assign image8 = disturbers.settings.image8 %}
               {% assign image9 = disturbers.settings.image9 %}
+              {% assign image9 = disturbers.settings.image10 %}
             {% endif %}
 
               
@@ -204,22 +158,42 @@
               {% assign content = disturbers.settings.content %}
             {% endif %}
             {% if paginate.current_page == 1 %}
-
             <div class="grid__item {{ disturbers.settings.class }} small--one-whole small--padding-top-default product-disturber">
               <div class="siema">
-                {{ image.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-                {{ image2.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-                {{ image3.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-                {{ image4.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-                {{ image5.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-                {{ image6.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-                {{ image7.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-                {{ image8.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
-                {{ image9.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
+              
+                <div class="product-img">{{ image.src | img_url: '' | img_tag: image.alt, 'image-siema' }}</div>
+                <div class="product-img">{{ image2.src | img_url: '' | img_tag: image.alt, 'image-siema' }}</div>
+                {% if image3 != blank %}
+                  <div class="product-img">{{ image3.src | img_url: '' | img_tag: image.alt, 'image-siema' }}</div>
+                {% endif %}
+                {% if image4 != blank %}
+                  {{ image4.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
+                {% endif %}
+                {% if image5 != blank %}
+                  {{ image5.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
+                {% endif %}
+                {% if image6 != blank %}
+                  {{ image6.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
+                {% endif %}
+                {% if image7 != blank %}
+                  {{ image7.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
+                {% endif %}
+                {% if image8 != blank %}
+                  {{ image8.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
+                {% endif %}
+                {% if image9 != blank %}
+                  {{ image9.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
+                {% endif %}
+                {% if image10 != blank %}
+                  {{ image10.src | img_url: '' | img_tag: image.alt, 'image-siema' }}
+                {% endif %}
               </div>
           </div> 
           {% endif %}
-             {% endif %} {% comment %} for first tpye {% endcomment %}
+
+         
+          {% endif %}
+
           {% endif %}
         {% endif %}
       {% endfor %}
@@ -272,6 +246,41 @@
             "label": "Content image"
           },
           {
+            "type": "image_picker",
+            "id": "image4",
+            "label": "Content image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image5",
+            "label": "Content image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image6",
+            "label": "Content image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image7",
+            "label": "Content image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image8",
+            "label": "Content image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image9",
+            "label": "Content image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image10",
+            "label": "Content image"
+          },
+          {
             "type": "richtext",
             "id": "content",
             "label": "Content"
@@ -297,79 +306,6 @@
             "unit":      "Pos",
             "label":     "Display after",
             "default":   4
-          }
-        ]
-      },
-      {
-        "type": "disturber2",
-        "name": "Slider in Collection",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Content image"
-          },
-          {
-            "type": "image_picker",
-            "id": "image2",
-            "label": "Content image"
-          },
-          {
-            "type": "image_picker",
-            "id": "image3",
-            "label": "Content image"
-          },
-          {
-            "type": "image_picker",
-            "id": "image4",
-            "label": "Content image"
-          },
-          {
-            "type": "image_picker",
-            "id": "image5",
-            "label": "Content image"
-          },
-          {
-            "type": "image_picker",
-            "id": "image6",
-            "label": "Content image"
-          },        
-          {
-            "type": "image_picker",
-            "id": "image7",
-            "label": "Content image"
-          },
-          {
-            "type": "image_picker",
-            "id": "image8",
-            "label": "Content image"
-          },
-          {
-            "type": "image_picker",
-            "id": "image9",
-            "label": "Content image"
-          },          
-          {
-            "id": "class",
-            "type": "text",
-            "label": "Slider class",
-            "default": "full-slider"
-          },
-          {
-            "id": "collection",
-            "type": "collection",
-            "label": "Collection",
-            "info": "Select the collection in which the content should be displayed"
-          },
-          {
-            "type":   "range",
-            "id":     "position",
-            "min":       0,
-            "max":       100,
-            "step":      1,
-            "unit":      "Pos",
-            "label":     "Display after",
-            "default":   7
           }
         ]
       }

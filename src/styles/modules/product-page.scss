@@ -6,8 +6,8 @@ body.template-product, html.template-product {
     #shopify-section-header {
         position: absolute;
         width: calc(100% - 120px);
-        top: 60px;
-        left: 60px;
+        top: $gutter*2;
+        left: $gutter*2;
         z-index: 10;
     }
     
@@ -139,7 +139,7 @@ table {
         margin: 0;
     }
     td {
-        line-height: 30px;
+        line-height: $gutter;
         text-align: center;
         margin: 0;
         padding: 0;
@@ -152,14 +152,18 @@ table {
     .size-chart-full {
         .close-button {
             position: fixed;
-            top: 60px;
-            right: 60px;
+            top: $gutter*2;
+            right: $gutter*2;
+            @include media-query($small) {
+                top: $gutter;
+                right: $gutter;
+            }
         }
     }
 
     &.toggle-content-delivery {
         .content {
-            padding: 0 30px;
+            padding: 0 $gutter;
         }
     }
 }
@@ -178,7 +182,9 @@ table {
 
     ul {
         list-style-type: none;
-        @extend .flex-center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
 
         li {
             @extend .grid__item;
@@ -195,6 +201,10 @@ table {
 
             .producttitle {
                 width: 55%;
+                @include media-query($small) {
+                    width: 100%;
+                    text-align: center;
+                }
                 padding: 0;
                 margin-top: 1em;
                 text-align: left;
@@ -203,6 +213,11 @@ table {
                 width: 45%;
                 margin-top: 1em;
                 text-align: right;
+                @include media-query($small) {
+                    width: 100%;
+                    margin-top: 0.5em;
+                    text-align: center;
+                }
 
                 &:after {
                     content: " EUR"
@@ -239,6 +254,10 @@ table {
     
     .table {
         width: 50%;
+        @include media-query($small) {
+            width: 100%;
+            margin: $gutter;
+        }
     }
 }
 
@@ -253,7 +272,7 @@ table {
 }
 
 .siema {
-    cursor: e-resize;
+    cursor: pointer;
 }
 
 .dots {
@@ -271,14 +290,14 @@ table {
     margin: 0 .2rem;
     padding: 0;
     border: 0;
-    background-color: #ccc;
+    background-color: rgb(202, 202, 202);
     border-radius: 50%;
     outline: 0;
     cursor: pointer;
   }
   
   .dots__item--active {
-    background: rgb(107, 107, 107);
+    background: rgb(101,183,76);
   }
 
 
@@ -288,9 +307,9 @@ table {
     .template-product {
         #shopify-section-header {
             position: absolute;
-            width: calc(100% - 60px);
-            top: 30px;
-            left: 30px;
+            width: calc(100% - 60px); // $gutter*2
+            top: $gutter;
+            left: $gutter;
             z-index: 10;
         }
         .navigation-overlay  {

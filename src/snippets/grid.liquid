@@ -27,7 +27,7 @@ function addCss() {
   var i;
   for (i = 0; i < grid.length; i++) {
       if (grid[i].classList.contains("full-slider")) {
-        grid[i].classList.add("ten-twelfths", "medium-up--push-one-twelfth", "medium-up--padding-top-one");
+        grid[i].classList.add("nine-twelfths", "medium-up--push-one-twelfth", "medium-up--padding-top-one");
       } 
       else {
         var remainder = i%5;
@@ -38,13 +38,24 @@ function addCss() {
   // distinguish between content pocket and slider
   var select = document.querySelectorAll(".siema");
 
+
+
   var j;
+
   for (j = 0; j < select.length; j++) {
-    if (select[j].parentElement.classList.contains("full-slider")) {
-      select[j].firstElementChild.style.width = "900%";
-    } else {
-      select[j].firstElementChild.style.width = "300%";
+      var selectChildren = document.querySelectorAll(".siema")[j].firstElementChild.childNodes;
+       console.log(selectChildren.length);
+
+  //  if (select[j].parentElement.classList.contains("full-slider")) {
+  //    select[j].firstElementChild.style.width = "900%";
+  //  } else {
+
+    for (var q = 0; q < selectChildren.length; q++) {
+    var num = parseInt(selectChildren.length) * 100;
+     var log = select[j].firstElementChild.style.width = num.toString() + "%";
     }
+
+  //  }
   }
 
 }

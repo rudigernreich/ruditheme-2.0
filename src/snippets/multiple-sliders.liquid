@@ -96,9 +96,29 @@ try {
 
       onChange: function onChange() {
         this.updateDots();
-      }
+      } 
     });
+
+kak(instance);
+console.log(instance);
+
+    //
   }
+    function kak(soup) {
+        document.addEventListener('click', (e) => {
+              //console.log(e.target);
+          if ((e.target.parentElement.childNodes.length > 0) && e.target.parentElement.className === 'product-img') {
+            //console.log("joorah");
+            //var dots = instance.dots.childNodes;
+
+          soup.next();
+          }
+               
+          
+        });
+
+}
+
 } catch (err) {
   _didIteratorError = true;
   _iteratorError = err;
@@ -113,4 +133,6 @@ try {
     }
   }
 }
+
+
 </script>

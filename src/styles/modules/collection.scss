@@ -16,6 +16,12 @@ body {
             }
         }
     }
+    &.template-collection {
+        .blurb {
+            margin: $gutter*2 0 $gutter*3 0;
+            padding: 0 $gutter;
+        }
+    }
 }
 
 .grid.endless-scroll {

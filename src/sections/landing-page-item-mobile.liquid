@@ -138,8 +138,8 @@
   .logo.change {
     background-position: center center;
   }
-  logo.change img {
-    visibility: hidden;
+  .logo.change img {
+    visibility: hidden !important;
   }
   .dots {
     display: none; !important;
@@ -158,24 +158,21 @@ $(document).ready(function () {
     function checkScreenSize(){
         var newWindowWidth = $(window).width();
         if (newWindowWidth < 749) {
-            document.querySelector(".site-logo").href = "/collections/all";
+          document.querySelector(".site-logo").href = "/collections/all";
 
-            let isScrolling = true; //a variable to stop the .scrollTop >= 400 from repeating
-            $(document).ready(function() {
-              $("a.site-logo").attr("href", "/collections/all");
-                $(window).on("scroll", function() {
-                  if ($(window).scrollTop() >= 100 && isScrolling) {
-                        $('.logo').addClass('change');
-                    isScrolling = false;
-                  } else if ($(window).scrollTop() < 100 && !isScrolling) {
-                        $('.logo').removeClass('change');
-                    isScrolling = true;
-                  }
-                });
+          let isScrolling = true; //a variable to stop the .scrollTop >= 400 from repeating
+          $(document).ready(function() {
+            $("a.site-logo").attr("href", "/collections/all");
+              $(window).on("scroll", function() {
+                if ($(window).scrollTop() >= 100 && isScrolling) {
+                      $('.logo').addClass('change');
+                  isScrolling = false;
+                } else if ($(window).scrollTop() < 100 && !isScrolling) {
+                      $('.logo').removeClass('change');
+                  isScrolling = true;
+                }
               });
-        }
-        else
-        {
+            });
         }
     }
 });

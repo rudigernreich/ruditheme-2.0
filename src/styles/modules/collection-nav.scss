@@ -22,7 +22,11 @@
       justify-content: center;
     }
   }
-	
+
+	.main-nav-right {
+    text-transform: capitalize;
+  }
+
   .main-nav-left, .main-nav-right {
   	flex-grow: 1;
   	flex-basis: 50%;

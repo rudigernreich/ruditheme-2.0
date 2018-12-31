@@ -13,7 +13,6 @@
   </div>
 </footer>
 
-
 {% if template == 'collection' %}
   {% include 'grid' %}
   {{ 'siema.js' | asset_url | script_tag }}
@@ -28,8 +27,8 @@
 {% if template == 'product' %}
   {{ 'siema.js' | asset_url | script_tag }}
   {% include 'product-slider' %}
+  {% include 'ajaxify-cart' %}
 {% endif %}
-
 
 {% schema %}
   {
