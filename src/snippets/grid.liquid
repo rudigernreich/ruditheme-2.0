@@ -1,4 +1,5 @@
 <script>
+// Add grid classes to products
 function addCss() {
   var classes = [
     "one-half",
@@ -44,18 +45,11 @@ function addCss() {
 
   for (j = 0; j < select.length; j++) {
       var selectChildren = document.querySelectorAll(".siema")[j].firstElementChild.childNodes;
-       console.log(selectChildren.length);
-
-  //  if (select[j].parentElement.classList.contains("full-slider")) {
-  //    select[j].firstElementChild.style.width = "900%";
-  //  } else {
 
     for (var q = 0; q < selectChildren.length; q++) {
-    var num = parseInt(selectChildren.length) * 100;
-     var log = select[j].firstElementChild.style.width = num.toString() + "%";
+      var num = parseInt(selectChildren.length) * 100;
+      var log = select[j].firstElementChild.style.width = num.toString() + "%";
     }
-
-  //  }
   }
 
 }

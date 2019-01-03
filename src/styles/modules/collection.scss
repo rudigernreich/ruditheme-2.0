@@ -1,3 +1,5 @@
+/*================ Collection ================*/
+
 body {
     &.template-collection, &.template-search {
         .product-info-wrap {
@@ -47,10 +49,8 @@ body {
 .endless-pagination {
     text-align: center;
 }
-
-// &:nth-of-type(1) { @extend .one-half; @extend .medium-up--push-none; @extend .medium-up--padding-top-none;}
         
-  /*================ Mobile ================*/
+/*================ Mobile ================*/
 
   @include media-query($small) {
     .grid.endless-scroll {
@@ -80,18 +80,8 @@ body {
               }
 
                .product-info-wrap {
-                // display: flex;
-                // justify-content: center;
-
                     p {
-                    // width: 50%;
                     padding: 0 10px;
-                    // text-align: left;
-                    
-                    &.right {
-                        // width: 35%;
-                        // text-align: right;
-                    }
                   }
                  }
       
